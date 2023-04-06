@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,8 +17,17 @@ public class Sector {
     @Id
     private String  sector_List;
     private String sector_List_Description;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "district_id")
-    private District district_List;
+    @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "district_list")
+    private District    district_List;
     private String district_List_Description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CustomerRegistration customerRegistration;
+    @OneToMany(mappedBy = "sector_List",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Cell> cells;
+
+    //------------test-------------
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Customer customer;
+
 }

@@ -15,8 +15,15 @@ public class Village {
     @Id
     private String  village_List;
     private String village_List_Description;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cell_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+   // @JoinColumn(name = "cell_list")
     private Cell cell_List;
     private String cell_List_Description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CustomerRegistration customerRegistration;
+
+    //------------test------------------
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Customer customer;
+
 }

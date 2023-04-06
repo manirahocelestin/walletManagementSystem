@@ -17,6 +17,15 @@ public class Province {
     @Id
     private String  province_List;
     private String province_List_Description;
+    @OneToMany(mappedBy = "province_List",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<District> districts;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private CustomerRegistration customerRegistration;
+
+    //---------------test-----------------------
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Customer customer;
+
 
 
 }
