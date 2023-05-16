@@ -15,11 +15,12 @@ public class Village {
     @Id
     private String  village_List;
     private String village_List_Description;
-    @ManyToOne(fetch = FetchType.LAZY)
-   // @JoinColumn(name = "cell_list")
+    @ManyToOne
+    @JoinColumn(name = "cell_list")
     private Cell cell_List;
     private String cell_List_Description;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private CustomerRegistration customerRegistration;
 
     //------------test------------------

@@ -16,24 +16,24 @@ import java.util.Set;
 
 public interface CustomerRegisterRepo extends JpaRepository<CustomerRegistration, String> {
 
-    Set<CustomerRegistration> findByDistrict(District district);
+    List<CustomerRegistration> findByDistrict(District district);
 
-    Set<CustomerRegistration> findByProvince(Province province);
-
-    Set<CustomerRegistration> findBySector(Sector sector);
-
-    Set<CustomerRegistration> findByCell(Cell cell);
-
-    Page<CustomerRegistration> findByProvince(Province province, Pageable pageable);
-
-    Page<CustomerRegistration> findByDistrict(District district, Pageable pageable);
-
-    Page<CustomerRegistration> findBySector(Sector sector, Pageable pageable);
-
-    Page<CustomerRegistration> findByCell(Cell cell, Pageable pageable);
-
-    @Query("SELECT c FROM CustomerRegistration c WHERE c.comm_Address_village = :village")
-    Set<CustomerRegistration> findByVillage(@Param("village") Village village);
+//    List<CustomerRegistration> findByProvince(Province province);
+//
+//    List<CustomerRegistration> findBySector(Sector sector);
+//
+//    List<CustomerRegistration> findByCell(Cell cell);
+//
+//    Page<CustomerRegistration> findByProvince(Province province, Pageable pageable);
+//
+//    Page<CustomerRegistration> findByDistrict(District district, Pageable pageable);
+//
+//    Page<CustomerRegistration> findBySector(Sector sector, Pageable pageable);
+//
+//    Page<CustomerRegistration> findByCell(Cell cell, Pageable pageable);
+//
+//    @Query("SELECT c FROM CustomerRegistration c WHERE c.comm_Address_village = :village")
+//    List<CustomerRegistration> findByVillage(@Param("village") Village village);
 
 
 }

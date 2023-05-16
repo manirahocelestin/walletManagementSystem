@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.sql.results.graph.Fetch;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -18,14 +19,15 @@ public class District {
     @Id
     private String district_List;
     private String district_List_Description;
-    @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "province_list")
+    @ManyToOne
+    @JoinColumn(name = "province_list")
     private Province  province_List;
     private String province_List_Description;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private CustomerRegistration customerRegistration;
-    @OneToMany(mappedBy = "district_List",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Sector> sectors;
+//    @OneToMany(mappedBy = "district_List",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<Sector> sectors;
     //---------test--------------
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Customer customer;

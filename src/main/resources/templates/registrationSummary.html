@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Summary</title>
+</head>
+<body>
+<div>
+  <h1> Part I Personal  identification Summary: </h1>
+  <hr>
+  <ul>
+    <li id="CustomerType">CustomerType:</li>
+    <li id="CustomerId">CustomerId:</li>
+    <li id="LE_book">LE_book:</li>
+    <li id="Salutation">Salutation:</li>
+    <li id="Nation_Id_Type">Nation_Id_Type:</li>
+    <li id="National_ID_Number">National_ID_Number:</li>
+    <li id="Customer_Name">Customer_Name:</li>
+    <li id="Surname">Surname:</li>
+    <li id="ForeName1">ForeName1:</li>
+    <li id="ForeName2">ForeName2:</li>
+    <li id="Customer_Acronym">Customer_Acronym:</li>
+    <li id="VisionOUC">VisionOUC:</li>
+    <li id="VisionSUB">VisionSUB:</li>
+    <li id="Customer_Open_Date">Customer_Open_Date</li>
+    <li id="Customer_Gender">Customer_Gender</li>
+    <li id="Date_OF_BirthDay">Date_OF_BirthDay:</li>
+    <li id="PlaceOfBirthDay">PlaceOfBirthDay:</li>
+    <li id="MaritalStatus">MaritalStatus:</li>
+    <li id="Spouse_Name">Spouse_Name:</li>
+  </ul>
+  <hr>
+  <hr>
+  <h1>Part II Personal identification Summary</h1>
+  <ul>
+    <li id="Social_Economic_Class">Social_Economic_Class:</li>
+    <li id="Nex_of_kin_Name">Nex_of_kin_Name:</li>
+    <li id="Next_of_kin_Id_Type">Next_of_kin_Id_Type:</li>
+    <li id="Next_of_kin_id_number">Next_of_kin_id_number:</li>
+    <li id="Next_of_kin_telephone">Next_of_kin_telephone:</li>
+    <li id="Next_of_kin_Email_Id">Next_of_kin_Email_Id</li>
+    <li id="Number_of_dependants">Number_of_dependants:</li>
+    <li id="Nationality">Nationality:</li>
+    <li id="Resident">Resident:</li>
+    <li id="Comm_Address_2">Comm_Address_2:</li>
+    <li id="Province">Province:</li>
+    <li id="District">District:</li>
+    <li id="Sector">Sector:</li>
+    <li id="Cell">Cell:</li>
+    <li id="Village">Village:</li>
+    <li id="Comm_Address_village">Comm_Address_village:</li>
+    <li id="Comm_country">Comm_country</li>
+    <li id="Comm_resident_Type">Comm_resident_Type:</li>
+    <li id="Perm_Address_1">Perm_Address_1</li>
+  </ul>
+
+  <hr>
+  <hr>
+  </ul>
+   <h1> Part III Personal Identification Summary</h1>
+  <ul>
+    <li id="Perm_perm_Address_2">Perm_perm_Address_2</li>
+    <li id="perm_province_id">perm_province_id:</li>
+    <li id="perm_perm_district">perm_perm_district</li>
+    <li id="perm_village">perm_village:</li>
+    <li id="perm_country">perm_country:</li>
+    <li id="Email_Id">Email_Id:</li>
+    <li id="Perm_Work_Telephone">Perm_Work_Telephone:</li>
+    <li id="Home_telephone">Home_telephone:</li>
+    <li id="Fax_Number_1">Fax_Number_1:</li>
+    <li id="Fax_number_2">Fax_number_2:</li>
+    <li id="Education">Education:</li>
+    <li id="Customer_TIN">Customer_TIN:</li>
+    <li id="NAICS_CODE">NAICS_CODE:</li>
+    <li id="EconomSubSectorCodeISIC">EconomSubSectorCodeISIC:</li>
+    <li id="related_Party">related_Party:</li>
+    <li id="relationship_type">relationship_type:</li>
+    <li id="relatedPartyName">relatedPartyName:</li>
+    <li id="SSN_NUMBER">SSN_NUMBER:</li>
+    <li id="health_Insurance_Number">health_Insurance_Number:</li>
+    <li id="Occupation">Occupation:</li>
+    <li id="Employer_Name">Employer_Name:</li>
+    <li id="Employee_Id">Employee_Id:</li>
+    <li id="Emp_Address_1">Emp_Address_1:</li>
+    <li id="Emp_address_2">Emp_address_2:</li>
+    <li id="Emp_country">Emp_country:</li>
+    <li id="Emp_province">Emp_province:</li>
+  </ul>
+
+  <hr>
+  <hr>
+  <ul>
+
+    <li id="Emp_district">Emp_district:</li>
+    <li id="Emp_Sector">Emp_Sector:</li>
+    <li id="Emp_cell">Emp_cell:</li>
+    <li id="Emp_village">Emp_village:</li>
+    <li id="Income">Income:</li>
+    <li id="Income_Frequency">Income_Frequency:</li>
+    <li id="Legal_status">Legal_status:</li>
+    <li id="Customer_status">Customer_status:</li>
+    <li id="Date_Last_Modified">Date_Last_Modified:</li>
+  </ul>
+</div>
+
+</body>
+
+<script>
+
+
+
+  //getting local storage on this html form
+
+
+  const getCustomerRegistrationData = sessionStorage.getItem('mydata');
+  var convertionCustomerRegister = JSON.parse(getCustomerRegistrationData);
+
+
+
+    var customerType = convertionCustomerRegister.customerType;
+    document.getElementById('CustomerType-S').textContent = "CustomerType: " + customerType;
+
+    var CustomerId = convertionCustomerRegister.customerId;
+    document.getElementById('CustomerId-S').textContent = "CustomerId: " + CustomerId;
+
+    var LE_book = convertionCustomerRegister.lEBook;
+    document.getElementById('LE_book-S').textContent = "LE_book: " + LE_book;
+
+    var Salutation = convertionCustomerRegister.salutation;
+    document.getElementById('Salutation-S').textContent = "Salutation : " + Salutation;
+
+    var Nation_Id_Type = convertionCustomerRegister.nation_id_type;
+    document.getElementById("Nation_Id_Type-S").textContent = "Nation_Id_Type: " + Nation_Id_Type;
+
+    var National_ID_Number = convertionCustomerRegister.national_id_number;
+    document.getElementById('National_ID_Number-S').textContent = "National_ID_Number: " + National_ID_Number;
+
+    var Customer_Name = convertionCustomerRegister.customer_name;
+    document.getElementById('Customer_Name-S').textContent = "Customer_Name: " + Customer_Name;
+
+    var Surname = convertionCustomerRegister.surname;
+    document.getElementById('Surname-S').textContent = "Surname : " + Surname;
+
+    var ForeName1 = convertionCustomerRegister.forename1;
+    document.getElementById('ForeName1-S').textContent = "ForeName1: " + ForeName1;
+    // foreName2
+    var ForeName2 = convertionCustomerRegister.forename2;
+    document.getElementById('ForeName2-S').textContent = "ForeName2: " + ForeName2;
+
+    var Customer_Acronym = convertionCustomerRegister.customerAcronym;
+    document.getElementById('Customer_Acronym-S').innerHTML = "Customer_Acronym: " + Customer_Acronym;
+
+    var VisionOUC = convertionCustomerRegister.visionOUC;
+    document.getElementById('VisionOUC-S').textContent = "VisionOUC: " + VisionOUC;
+
+
+
+    var VisionSUB = convertionCustomerRegister.visionSBU;
+    document.getElementById('VisionSUB-S').textContent = "VisionSBU: " + VisionSUB;
+
+    var Customer_Open_Date = convertionCustomerRegister.customerOPenDate;
+    document.getElementById('Customer_Open_Date-S').textContent = "Customer_Open_Date: " + Customer_Open_Date;
+
+    var Customer_Gender = convertionCustomerRegister.customerGender;
+    document.getElementById('Customer_Gender-S').textContent = "Customer_Gender: " + Customer_Gender;
+
+    var Date_OF_BirthDay = convertionCustomerRegister.dateOfBirthDay;
+    document.getElementById('Date_OF_BirthDay-S').textContent = "Date_OF_BirthDay: " + Date_OF_BirthDay;
+
+    var PlaceOfBirthDay = convertionCustomerRegister.placeOfBirthday;
+    document.getElementById('PlaceOfBirthDay-S').textContent = "PlaceOfBirthDay: " + PlaceOfBirthDay;
+
+    var MaritalStatus = convertionCustomerRegister.maritalStatus;
+    document.getElementById('MaritalStatus-S').textContent = "MaritalStatus: " + MaritalStatus;
+
+    var Spouse_Name = convertionCustomerRegister.spouseName;
+    document.getElementById('Spouse_Name-S').textContent = "Spouse_Name: " + Spouse_Name;
+
+    var Social_Economic_Class = convertionCustomerRegister.socialEconomicClass;
+    document.getElementById('Social_Economic_Class-S').textContent = "Social_Economic_Class: " + Social_Economic_Class;
+
+    var Nex_of_kin_Name = convertionCustomerRegister.nextOfKinName;
+    document.getElementById('Nex_of_kin_Name-S').textContent = "Nex_of_kin_Name: " + Nex_of_kin_Name;
+
+    var Next_of_kin_Id_Type = convertionCustomerRegister.nextOfKinIDType;
+    document.getElementById('Next_of_kin_Id_Type-S').textContent = "Next_of_kin_Id_Type: " + Next_of_kin_Id_Type;
+
+    var Next_of_kin_id_number = convertionCustomerRegister.nextOfKinName;
+    document.getElementById('Next_of_kin_id_number-S').textContent = "Next_of_kin_id_number: " + Next_of_kin_id_number;
+
+    var Next_of_kin_telephone = convertionCustomerRegister.nextOfKinTelephone;
+    document.getElementById('Next_of_kin_telephone-S').textContent = "Next_of_kin_telephone: " + Next_of_kin_telephone;
+
+    var Next_of_kin_Email_Id = convertionCustomerRegister.nextOfKinEmailId;
+    document.getElementById('Next_of_kin_Email_Id-S').textContent = "Next_of_kin_Email_Id: " + Next_of_kin_Email_Id;
+
+    var Number_of_dependants = convertionCustomerRegister.numberOfDependants;
+    document.getElementById('Number_of_dependants-S').textContent = "Number_of_dependants: " + Number_of_dependants;
+
+    var Nationality = convertionCustomerRegister.nationality;
+    document.getElementById('Nationality-S').textContent = "Nationality: " + Nationality;
+
+    var Resident = convertionCustomerRegister.residence;
+    document.getElementById('Resident-S').textContent = "Resident: " + Resident;
+
+    var Comm_Address_2 = convertionCustomerRegister.commonAddress2;
+    document.getElementById('Comm_Address_2-S').textContent = "Comm_Address_2: " + Comm_Address_2;
+
+    var Province = convertionCustomerRegister.province;
+    document.getElementById('Province-S').textContent = "Province: " + Province;
+
+    var District = convertionCustomerRegister.district;
+    document.getElementById('District-S').textContent = "District: " + District;
+
+    var Sector = convertionCustomerRegister.sector;
+    document.getElementById('Sector-S').textContent = "Sector: " + Sector;
+
+    var Cell = convertionCustomerRegister.cell;
+    document.getElementById('Cell-S').textContent = "Cell: " + Cell;
+
+    var Village = convertionCustomerRegister.cell;
+    document.getElementById('Village-S').textContent = "Village: " + Village;
+
+    var Comm_Address_village = convertionCustomerRegister.commAddressVillage;
+    document.getElementById('Comm_Address_village-S').textContent = "Comm_Address_village: " + Comm_Address_village;
+
+    var Comm_country = convertionCustomerRegister.commCountry;
+    document.getElementById('Comm_country-S').textContent = "Comm_country: " + Comm_country;
+
+    var Comm_resident_Type = convertionCustomerRegister.commResidentType;
+    document.getElementById('Comm_resident_Type-S').textContent = "Comm_resident_Type: " + Comm_resident_Type;
+
+    var Perm_Address_1 = convertionCustomerRegister.permAddress1;
+    document.getElementById('Perm_Address_1-S').textContent = "Perm_Address_1: " + Perm_Address_1;
+
+    //--------------------------------------------------------------------------------------------
+    var Perm_perm_Address_2 = convertionCustomerRegister.permAddress2;
+    document.getElementById('Perm_perm_Address_2-S').innerHTML = "Perm_perm_Address_2: " + Perm_perm_Address_2;
+
+    var perm_province_id = convertionCustomerRegister.permProvince;
+    document.getElementById('perm_province_id-S').textContent = "perm_province_id: " + perm_province_id;
+    //visionSUB
+
+    var perm_perm_district = convertionCustomerRegister.permDistrict;
+    document.getElementById('perm_perm_district-S').textContent = "perm_perm_district: " + perm_perm_district;
+
+    var perm_village = convertionCustomerRegister.permVillage;
+    document.getElementById('perm_village-S').textContent = "perm_village: " + perm_village;
+
+    var perm_country = convertionCustomerRegister.permCountry;
+    document.getElementById('perm_country-S').textContent = "perm_country: " + perm_country;
+
+
+    var Email_Id = convertionCustomerRegister.emailId;
+    document.getElementById('Email_Id-S').textContent = "Email_Id: " + Email_Id;
+
+    var Perm_Work_Telephone = convertionCustomerRegister.workTelephone;
+    document.getElementById('Perm_Work_Telephone-S').textContent = "Perm_Work_Telephone: " + Perm_Work_Telephone;
+
+    var Home_telephone = convertionCustomerRegister.homeTelephone;
+    document.getElementById('Home_telephone-S').textContent = "Home_telephone: " + Home_telephone;
+
+    var Fax_Number_1 = convertionCustomerRegister.faxNumber1;
+    document.getElementById('Fax_Number_1-S').textContent = "Fax_Number_1: " + Fax_Number_1;
+
+    var Fax_number_2 = convertionCustomerRegister.faxNumber2;
+    document.getElementById('Fax_number_2-S').textContent = "Fax_number_2: " + Fax_number_2;
+
+    var Education = convertionCustomerRegister.education;
+    document.getElementById('Education-S').textContent = "Education: " + Education;
+
+    var Customer_TIN = convertionCustomerRegister.customerIT;
+    document.getElementById('Customer_TIN-S').textContent = "Customer_TIN: " + Customer_TIN;
+
+    var NAICS_CODE = convertionCustomerRegister.naicsCode;
+    document.getElementById('NAICS_CODE-S').textContent = "NAICS_CODE: " + NAICS_CODE;
+
+    var EconomSubSectorCodeISIC = convertionCustomerRegister.econSubSectCodeISI;
+    document.getElementById('EconomSubSectorCodeISIC-S').textContent = "EconomSubSectorCodeISIC: " + EconomSubSectorCodeISIC;
+
+    var related_Party = convertionCustomerRegister.relatedParty;
+    document.getElementById('related_Party-S').textContent = "related_Party: " + related_Party;
+
+    var relationship_type = convertionCustomerRegister.relationshipType;
+    document.getElementById('relationship_type-S').textContent = "relationship_type: " + relationship_type;
+
+    var relatedPartyName = convertionCustomerRegister.residence;
+    document.getElementById('relatedPartyName-S').textContent = "relatedPartyName: " + relatedPartyName;
+
+    var SSN_NUMBER = convertionCustomerRegister.ssnNumber;
+    document.getElementById('SSN_NUMBER-S').textContent = "SSN_NUMBER: " + SSN_NUMBER;
+
+    var health_Insurance_Number = convertionCustomerRegister.healthInsuranceNumber;
+    document.getElementById('health_Insurance_Number-S').textContent = "health_Insurance_Number: " + health_Insurance_Number;
+
+    var Occupation = convertionCustomerRegister.occupation;
+    document.getElementById('Occupation-S').textContent = "Occupation: " + Occupation;
+
+    var Employer_Name = convertionCustomerRegister.employerName;
+    document.getElementById('Employer_Name-S').textContent = "Employer_Name: " + Employer_Name;
+
+    var Employee_Id = convertionCustomerRegister.employeId;
+    document.getElementById('Employee_Id-S').textContent = "Employee_Id: " + Employee_Id;
+
+    var Emp_Address_1 = convertionCustomerRegister.empAddress1;
+    document.getElementById('Emp_Address_1-S').textContent = "Emp_Address_1: " + Emp_Address_1;
+
+    var Emp_address_2 = convertionCustomerRegister.empAddress2;
+    document.getElementById('Emp_address_2-S').textContent = "Emp_address_2: " + Emp_address_2;
+
+    var Emp_country = convertionCustomerRegister.empCountry;
+    document.getElementById('Emp_country-S').textContent = "Emp_country: " + Emp_country;
+
+    var Emp_province = convertionCustomerRegister.empProvince;
+    document.getElementById('Emp_province-S').textContent = "Emp_province: " + Emp_province;
+    //-----------------------------------------------------------------------------------------------
+
+    var Emp_district = convertionCustomerRegister.empDistrict;
+    document.getElementById('Emp_district-S').textContent = "Emp_district: " + Emp_district;
+
+    var Employer_Name = convertionCustomerRegister.employerName;
+    document.getElementById('Employer_Name-S').textContent = "Employer_Name: " + Employer_Name;
+    var Emp_Sector = convertionCustomerRegister.empSector;
+    document.getElementById("Emp_Sector-S").textContent = "Emp_Sector: " + Emp_Sector;
+
+    var Emp_cell = convertionCustomerRegister.empCell;
+    document.getElementById('Emp_cell-S').textContent = "Emp_cell: " + Emp_cell;
+
+    var Emp_village = convertionCustomerRegister.empVillage;
+    document.getElementById('Emp_village-S').textContent = "Emp_village: " + Emp_village;
+
+    var Income = convertionCustomerRegister.income;
+    document.getElementById('Income-S').textContent = "Income: " + Income;
+
+    var Income_Frequency = convertionCustomerRegister.incomeFrequency;
+    document.getElementById('Income_Frequency-S').textContent = "Income_Frequency: " + Income_Frequency;
+
+    var Legal_status = convertionCustomerRegister.legalStatus;
+    document.getElementById('Legal_status-S').textContent = "Legal_status: " + Legal_status;
+
+    var Customer_status = convertionCustomerRegister.customerStatus;
+    document.getElementById('Customer_status-S').textContent = "Customer_status: " + Customer_status;
+
+    var Date_Last_Modified = convertionCustomerRegister.LastModifiedData;
+    document.getElementById('Date_Last_Modified-S').textContent = "Date_Last_Modified: " + Date_Last_Modified;
+
+
+
+
+
+
+
+</script>
+</html>

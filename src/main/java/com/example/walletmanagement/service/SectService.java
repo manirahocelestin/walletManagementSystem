@@ -3,11 +3,12 @@ package com.example.walletmanagement.service;
 import com.example.walletmanagement.model.Sector;
 
 import java.util.List;
+import java.util.Set;
 
-public interface SectorService {
-    List<Sector> findAllSector();
+public interface SectService {
+    List<Sector> findALlSector();
 
-    Sector getSectorByName(String sectorName);
+
 
 
 }

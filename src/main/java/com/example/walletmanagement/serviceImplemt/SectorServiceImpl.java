@@ -1,32 +1,24 @@
 package com.example.walletmanagement.serviceImplemt;
 
 import com.example.walletmanagement.model.Sector;
-import com.example.walletmanagement.repository.SectorRep;
-import com.example.walletmanagement.service.SectorService;
-import lombok.RequiredArgsConstructor;
+import com.example.walletmanagement.repository.SectorRepo;
+import com.example.walletmanagement.service.SectService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-@RequiredArgsConstructor
-
-public class SectorServiceImpl  implements SectorService {
-    private final SectorRep sectorRep;
-    @Override
-    public List<Sector> findAllSector() {
-        return sectorRep.findAll();
-    }
+public class SectorServiceImpl  implements SectService{
+    @Autowired
+    private SectorRepo sectorRepo;
 
     @Override
-    public Sector getSectorByName(String sectorCode) {
-        return sectorRep.getById(sectorCode);
+    public List<Sector> findALlSector() {
+        return sectorRepo.findAll();
     }
-
-//    @Override
-//    public Sector getSectorByName(String sectorName) {
-//        return sectorRep.findBySector_List_Description(sectorName);
-//    }
-
-
-
 }
+
+
+

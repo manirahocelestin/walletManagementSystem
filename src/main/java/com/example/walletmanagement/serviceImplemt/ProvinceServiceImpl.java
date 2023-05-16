@@ -4,14 +4,16 @@ import com.example.walletmanagement.model.Province;
 import com.example.walletmanagement.repository.ProvinceRepo;
 import com.example.walletmanagement.service.ProvinceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+
 public class ProvinceServiceImpl implements ProvinceService {
-    private final ProvinceRepo provinceRepo;
+    @Autowired
+    private ProvinceRepo provinceRepo;
 
     @Override
     public List<Province> getAllProvince() {

@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VillageRepo extends JpaRepository<Village,String> {
-    //Village findByVillage_List(String village_List);
-    //Village findByCell_List_Description(String cell_List_Description);
 }

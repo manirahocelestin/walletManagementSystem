@@ -9,11 +9,11 @@ public interface CustomerRegistrationService {
     CustomerRegistration createCustomerRegister(CustomerRegistration customer);
 
     List<CustomerRegistration> findAllCustomerRegister();
-    Set<CustomerRegistration> getAllPeopleLivingInProvince (Province province);
-    Set<CustomerRegistration> getAllPeopleLivingInDistrict(District district);
-    Set<CustomerRegistration> getAllPeopleLivingInSector(Sector sector);
-    Set<CustomerRegistration> getAllPeopleLivingInCell(Cell cell);
-    Set<CustomerRegistration> getAllPeopleLivingInVillage(Village village);
+//    List<CustomerRegistration> getAllPeopleLivingInProvince (Province province);
+//    List<CustomerRegistration> getAllPeopleLivingInDistrict(District district);
+//    List<CustomerRegistration> getAllPeopleLivingInSector(Sector sector);
+//    List<CustomerRegistration> getAllPeopleLivingInCell(Cell cell);
+//    List<CustomerRegistration> getAllPeopleLivingInVillage(Village village);
 
 
 

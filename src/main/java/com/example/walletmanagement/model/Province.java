@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -17,9 +18,10 @@ public class Province {
     @Id
     private String  province_List;
     private String province_List_Description;
-    @OneToMany(mappedBy = "province_List",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<District> districts;
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @OneToMany(mappedBy = "province_List",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<District> districts;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
     private CustomerRegistration customerRegistration;
 
     //---------------test-----------------------
