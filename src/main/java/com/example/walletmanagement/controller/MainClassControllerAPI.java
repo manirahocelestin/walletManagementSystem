@@ -7,9 +7,7 @@ import com.example.walletmanagement.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -65,6 +63,43 @@ public class MainClassControllerAPI {
     private VisionSubService visionSubService;
     @Autowired
     private SocialEconomicClassService socialEconomicClassService;
+
+    @Autowired
+    private DurationService durationService;
+
+    @Autowired
+    private ExcessService excessService;
+
+    @Autowired
+    private FeesSumInsuranceService feesSumInsuranceService;
+
+    @Autowired
+    private FireService fireService;
+
+    @Autowired
+    private LoadingFactorService loadingFactorService;
+
+    @Autowired
+    private OccupantService occupantService;
+
+    @Autowired
+    private OwnDamageService ownDamageService;
+
+    @Autowired
+    private TerritorialCoverLimitsService territorialCoverLimitsService;
+
+    @Autowired
+    private TheftService theftService;
+
+    @Autowired
+    private ThirdPartyService thirdPartyService;
+
+    @Autowired
+    private VehicleTypeService vehicleTypeService;
+
+    @Autowired
+    private VehicleUsageTypeService vehicleUsageTypeService;
+
 
 
 
@@ -173,7 +208,56 @@ public class MainClassControllerAPI {
         return new ResponseEntity<>(socialEconomicClassService.findAllSocialEconomic(),HttpStatus.OK);
     }
 
+    @GetMapping("/getAllDuration")
+    public ResponseEntity<List<Duration>> findDuration(){
+        return new ResponseEntity<>(durationService.findAllDuration(),HttpStatus.OK);
+    }
+    @GetMapping("/getAllExcess")
+    public ResponseEntity<List<Excess>> findExcess(){
+        return new ResponseEntity<>(excessService.findAllExcess(),HttpStatus.OK);
+    }
 
+    @GetMapping("/getAllFeesSumInsurance")
+    public ResponseEntity<List<Fees_sumInsured>> findFeesSumInsurance(){
+        return new ResponseEntity<>(feesSumInsuranceService.findAllFeesSumInsurance(),HttpStatus.OK);
+    }
+    @GetMapping("/getAllFire")
+    public ResponseEntity<List<Fire>> findFire(){
+        return new ResponseEntity<>(fireService.findAllFire(),HttpStatus.OK);
+    }
+    @GetMapping("/getLoadingFactor")
+    public ResponseEntity<List<LoadingFactor>> findLoadingFactor(){
+        return new ResponseEntity<>(loadingFactorService.findAllLoadingFactor(),HttpStatus.OK);
+    }
+    @GetMapping("/getAllOccupant")
+    public ResponseEntity<List<Occupant>> findOccupant(){
+        return new ResponseEntity<>(occupantService.findAllOccupant(),HttpStatus.OK);
+    }
+
+    @GetMapping("/getOwnDamage")
+    public ResponseEntity<List<OwnDamage>> findOwnDamage(){
+        return new ResponseEntity<>(ownDamageService.findAllOwnDamage(),HttpStatus.OK);
+    }
+    @GetMapping("/getTerritorialCoverLimit")
+    public ResponseEntity<List<Territorial_cover_limits>> findTerritarialCover(){
+        return new ResponseEntity<>(territorialCoverLimitsService.findAllTerritorialCover(),HttpStatus.OK);
+    }
+    @GetMapping("/getTheft")
+    public ResponseEntity<List<Theft>> findTheft(){
+        return new ResponseEntity<>(theftService.findAllTheft(),HttpStatus.OK);
+    }
+    @GetMapping("/getThirdParty")
+    public ResponseEntity<List<ThirdParty>> findThirdParty(){
+        return new ResponseEntity<>(thirdPartyService.findAllThirdParty(),HttpStatus.OK);
+    }
+    @GetMapping("/getVehicleType")
+    public ResponseEntity<List<Vehicle_type>> findVehicleType(){
+        return new ResponseEntity<>(vehicleTypeService.findAllVehicleType(),HttpStatus.OK);
+    }
+    @GetMapping("/getVehicleUsageType")
+    public ResponseEntity<List<Vehicle_usage_type>> findVehicleUsageType(){
+        return new ResponseEntity<>(vehicleUsageTypeService.findAllVehicleUsageType(),HttpStatus.OK);
+    }
 
 
 

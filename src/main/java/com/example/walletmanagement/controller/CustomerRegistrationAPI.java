@@ -19,6 +19,7 @@ import java.util.List;
 public class CustomerRegistrationAPI {
     @Autowired
     private  CustomerRegistrationService service;
+
     @PostMapping("/createCustomer")
     public ResponseEntity<CustomerRegistration> createCustomerRegister(@RequestBody CustomerRegistration customerRegistration){
         return new ResponseEntity<>(service.createCustomerRegister(customerRegistration),HttpStatus.OK);

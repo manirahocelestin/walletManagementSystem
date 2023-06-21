@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>SHOPPING CART</title>
+    <style>
+        .css label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-row > div {
+            width: calc(50% - 10px);
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="form-container">
+    <div id="customerRegister">
+        <h2>SHOPPING CART Form</h2>
+        <form method="POST" id="myForm">
+            <!-- division part one-->
+
+            <!-- we use class called form-section this form will be hidden-->
+            <div class="form-section">
+                <div class="form-row">
+                    <div>
+                        <label for="VehicleUsage">Vehicle Usage Type:</label>
+                        <select id="VehicleUsage" name="VehicleUsage">
+                            <option value="VehicleUsage">vehicleUsage</option>
+
+                        </select>
+                    </div>
+                    <div>
+                        <label for="vehicleModel">Vehicle Model(Ex : RAV4)</label>
+                        <input type="text" id="vehicleModel" name="vehicleModel" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label for="vehicleType">Vehicle Type:</label>
+                        <select id="vehicleType">
+                            <option>usageType</option>
+
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="vehiclePlateNo">vehicle Plate No (Ex: RAA 001 A)</label>
+                        <input id="vehiclePlateNo" type="text" name="vehiclePlateNo" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label for="vehicleManufacturedYear">vehicle Manufactured year:</label>
+                        <input type="text" id="vehicleManufacturedYear" name="vehicleManufacturedYear" required>
+                    </div>
+                    <div>
+                        <label for="vehicleChassisNumber">vehicle Chassis No:</label>
+                        <input type="text" id="vehicleChassisNumber" name="vehicleChassisNumber" required>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div>
+                        <label for="vehicleBrand">vehicle Brand(Ex: TOYOTA)</label>
+                        <input type="text" id="vehicleBrand" name="vehicleBrand" required>
+                    </div>
+                    <div>
+                        <label for="vehicleSeat">vehicle Seat Capacity:</label>
+                        <input type="text" id="vehicleSeat" name="vehicleSeat" required>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" onclick="showSection(1)"> next</button>
+                </div>
+            </div>
+
+            <!--Division for part 3 -->
+
+            <!-- The last page we don't need to hidd this page because this's last page-->
+
+            <div class="form-section hidden">
+
+
+                <div class="form-row">
+
+                    <div>
+                        <label for="duration">duration:</label>
+                        <select id="duration" name="duration">
+                            <option>duration</option>
+
+                        </select>
+                    </div>
+                    <div>
+                        <label for="numberOfOccupantsCovered">Number of occupants Covered :</label>
+                        <input type="text" id="numberOfOccupantsCovered" name="numberOfOccupantsCovered" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="locationCover">Location cover:</label>
+                        <select id="locationCover" name="locationCover">
+                            <option>Location</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="sumInsuredPerOccupants">Sum Insured Per Occupant:</label>
+                        <select id="sumInsuredPerOccupants">
+                            <option>select</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="declaredValue">Declared Value:</label>
+                        <input type="text" id="declaredValue" name="declaredValue" required>
+                    </div>
+
+                </div>
+                <div class="checkboxes">
+                    <div class="form-row">
+                        <div>
+                            <label for="thirdParty">thirdParty</label>
+                            <input type="checkbox" id="thirdParty" name="thirdParty" value="thirdParty">
+                        </div>
+                        <div>
+                            <label for="ownDamage">ownDamage</label>
+                            <input type="checkbox" id="ownDamage" name="ownDamage" value="ownDamage">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="theft">theft</label>
+                            <input type="checkbox" id="theft" name="theft" value="theft">
+                        </div>
+                        <div>
+                            <label for="fire">fire</label>
+                            <input type="checkbox" id="fire" name="fire" value="fire">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="occupant">occupant</label>
+                            <input type="checkbox" id="occupant" name="occupant" value="occupant">
+                        </div>
+                        <div>
+                            <label for="tpl">TPL+</label>
+                            <input type="checkbox" id="tpl" name="tpl" required>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div>
+                    <button type="button" onclick="showSection(2)">Next</button>
+                </div>
+            </div>
+            <div class="form-section hidden">
+                <div class="listOfShopping">
+                    <ul>
+
+                        <li id="vehicleClassification">vehicle Classification:</li>
+                        <li id="VehicleBrand1">Vehicle Brand:</li>
+                        <li id="Model">Model:</li>
+                        <li id="CassisNo">Cassisc No:</li>
+                        <li id="ManufacturedYear">Manufactured Year:</li>
+                        <li id="PlateNo">Plate No:</li>
+                        <li id="SeatCapacity">Seat Capacity:</li>
+                        <li id="vehicleTypeL">vehicleType:</li>
+                        <hr>
+                        <h2> Other Details</h2>
+                        <hr>
+                        <li id="InsuranceDuration">Insurance Duration:</li>
+                        <li id="LocationCoverL">Location Cover:</li>
+                        <li id="DeclaredValueL">Declared Value:</li>
+                        <li id="NumberOfOccupants">Number of occupants covered:</li>
+                        <li id="AccidentDeath">Accident Death:</li>
+                        <li id="TotalPermanentDisability">Total Permanent Disability:</li>
+                        <li id="MedicalOfCover">Medical Of Cover:</li>
+
+                        <h3>Period Of Cover</h3>
+
+                        <li id="StartDate">Start Date:</li>
+                        <li id="EndDate">End Date:</li>
+                        <hr>
+                        <h2> Selected Covers</h2>
+                        <hr>
+                        <li id="ThirdPartyLiability">Third Party Liability:</li>
+                        <li id="OwnDamageLL">Own Damage:</li>
+                        <li id="TheftL">Theft:</li>
+                        <li id="FireL">Fire:</li>
+                        <li id="OccupantL">Occupant:</li>
+                        <li id="tplL">TPL:</li>
+                        <hr>
+                        <h2> Excess in %</h2>
+                        <hr>
+                        <li id="OwnDamageL">Own Damage:</li>
+                        <li id="5%ofLoss">5% of Loss:</li>
+                        <li id="MinExcessL">Min.Excess(Frw):</li>
+                        <li id="PermLoad10%">Perm.Load 10%:</li>
+                        <li id="MinimumL">Minimum:</li>
+                        <li id="TheftD">Theft:</li>
+                        <li id="2.5%OfLoss:">2.5% of loss:</li>
+                        <li id="MinExcess(Frw)">Min.Excess(Frw):</li>
+                        <li id="FireLL">Fire</li>
+                        <li id="2.5%OfLoss">2.5% of Loss</li>
+                        <li id="MinExcess(Frw)L">Min.Excess(Frw):</li>
+                        <li id="TheftLL">Theft:</li>
+                        <hr>
+                        <h2>Total cost</h2>
+                        <hr>
+                        <h4> Premium</h4>
+                        <li id="age">Car Age:</li>
+
+                        <li id="ThirdPartyT">Third Party Liability:</li>
+                        <li id="OwnDamageT">Own Damage:</li>
+                        <li id="TheftT">Theft:</li>
+                        <li id="FireT">Fire:</li>
+                        <li id="occupantT">Occupants:</li>
+                        <li id="tplT">TPL+(Ext.Family):</li>
+                        <li id="TotalNetPremium">Total Net Premium:</li>
+                        <li id="MotorGuarantyFund">Motor Guaranty fund</li>
+                        <li id="TAXABLEPEMIUM">TAXABLE PEMIUM:</li>
+                        <li id="VAT@18%">VAT@18%:</li>
+                        <hr>
+                        <hr>
+                        <h1>Total Premium Payable: </h1>
+                        <hr>
+                        <hr>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div>
+                <button type="botton" onclick="displayData()">Display</button>
+            </div>
+            <div>
+                <!--button type="botton" onclick="afterSubmit()">Summary</button-->
+            </div>
+
+            <div>
+                <!--button type="submit" onclick="displayData()">Sent</button-->
+            </div>
+
+
+        </form>
+    </div>
+
+</div>
+
+
+</body>
+<script>
+    async function displayData(event) {
+        let VehicleUsageValue = document.getElementById("VehicleUsage");
+        let vehicleModelValue = document.getElementById("vehicleModel").value;
+        let vehicleTypeValue = document.getElementById("vehicleType");
+        let vehiclePlateNoValue = document.getElementById("vehiclePlateNo").value;
+        let vehicleManufacturedYear = document.getElementById("vehicleManufacturedYear").value;
+        let vehicleBrandValue = document.getElementById("vehicleBrand").value;
+        let vehicleSeatCapacityValue = document.getElementById("vehicleSeat").value;
+        let vehicleChassisNumberValue = document.getElementById("vehicleChassisNumber").value;
+        let durationValue = document.getElementById("duration");
+        let locationCover = document.getElementById("locationCover");
+        let sumInsuredPerOccupants = document.getElementById("sumInsuredPerOccupants");
+        let declaredValue = document.getElementById("declaredValue").value;
+
+
+        // showing summary for first page for about vehicle verification
+//-------------------------------------------------------------------------------------------------------
+        // Those function will help me to set value in field after print them on summary.
+        // After doing this function i will take this vehicleUsageOption with value then set it in summary variable.
+
+        let vehicleUsageAll = document.getElementById('VehicleUsage').options;
+        let vehicleUsageSelected = document.getElementById('VehicleUsage').value;
+        for (let i = 0; i < vehicleUsageAll.length; i++) {
+            if (vehicleUsageAll[i].value == vehicleUsageSelected) {
+                var vehicleUsageOption = vehicleUsageAll[i].innerHTML;
+            }
+        }
+
+
+        // duration
+        let durationAll = document.getElementById("duration").options;
+        let durationSelected = document.getElementById("duration").value;
+        for (let i = 0; i < durationAll.length; i++) {
+            if (durationAll[i].value == durationSelected) {
+                var durationOption = durationAll[i].innerHTML;
+            }
+        }
+
+
+        //territoryCoverLimit
+
+        let territoryCoverAll = document.getElementById("locationCover").options;
+        let territorySelected = document.getElementById("locationCover").value;
+        for (let i = 0; i < territoryCoverAll.length; i++) {
+            if (territoryCoverAll[i].value == territorySelected) {
+                var torritoryOption = territoryCoverAll[i].innerHTML;
+
+            }
+        }
+        // sum InsuranceOccupant
+
+        let sumInsuranceOccupantAll = document.getElementById("sumInsuredPerOccupants").options;
+        let selectInsurance = document.getElementById("sumInsuredPerOccupants").value;
+        for (let i = 0; i < sumInsuranceOccupantAll.length; i++) {
+            if (sumInsuranceOccupantAll[i].value == selectInsurance) {
+                var selectedValue = sumInsuranceOccupantAll[i].innerHTML;
+
+            }
+        }
+        // vehicle type
+
+        let optionVehicleType = document.getElementById("vehicleType").options;
+        let selectedVehicleType = document.getElementById("vehicleType").value;
+        var currentVehicleType;
+        for (let i = 0; i < optionVehicleType.length; i++) {
+            if (optionVehicleType[i].value == selectedVehicleType) {
+                currentVehicleType = optionVehicleType[i].innerHTML;
+            }
+
+        }
+
+// duration Rate
+        //------------------------------------------
+        var getDurationRate = await fetch("http://localhost:8080/getAllDuration");//duration
+        var dataDuration = await getDurationRate.json();
+        let durationRate = null;
+        for (let i = 0; i < dataDuration.length; i++) {
+            if (dataDuration[i].duration == durationOption) {
+                durationRate = dataDuration[i].rate;
+
+            }
+
+
+        }
+
+
+        //------------------------------------summary List--------------------------------------------------------
+
+        document.getElementById("vehicleClassification").textContent = "VehicleClassification: " + vehicleUsageOption;
+        document.getElementById("PlateNo").textContent = "Plate No: " + vehiclePlateNoValue;
+        document.getElementById("VehicleBrand1").textContent = "Vehicle Brand: " + vehicleBrandValue;
+        document.getElementById("Model").textContent = "Model: " + vehicleModelValue;
+        document.getElementById("CassisNo").textContent = "CassisNo: " + vehicleChassisNumberValue;
+        document.getElementById("ManufacturedYear").textContent = "Manufactured Year: " + vehicleManufacturedYear;
+        document.getElementById("SeatCapacity").textContent = "SeatCapacity: " + vehicleSeatCapacityValue;
+        document.getElementById("vehicleTypeL").textContent = "Vehicle Type: " + currentVehicleType;
+        document.getElementById("LocationCoverL").textContent = "Location Cover: " + torritoryOption;
+        document.getElementById("DeclaredValueL").textContent = "Declared Value: " + declaredValue;
+        document.getElementById("NumberOfOccupants").textContent = "Number Of Occupants: " + selectedValue;
+        document.getElementById("InsuranceDuration").textContent = "Insurance Duration: " + durationOption;
+
+
+//-------------------------Calculation part for all ending point-------------------------------
+        // Calculate converting day into date.
+
+        const durationGetAll = await fetch("http://localhost:8080/getAllDuration");
+        let durationData = await durationGetAll.json();
+        let keptDays;
+        for (let i = 0; i < durationData.length; i++) {
+            if (durationData[i].duration == durationOption) {
+                keptDays = durationData[i].days;
+
+                break;
+
+            }
+
+
+        }
+
+
+        //starting date and Ending Date
+
+        const startingDate = new Date();
+        document.getElementById('StartDate').textContent = "StartDate: " + startingDate;
+        var durationDays = keptDays;
+        var endingDate = new Date(startingDate.getTime() + (durationDays * 24 * 60 * 60 * 1000));
+        document.getElementById("EndDate").textContent = "EndingDate: " + endingDate;
+
+
+        //-----------------------------------close----------------------------------------------
+
+        //-------------------------calculate sumInsurance Occupants with some field--------------
+
+        let getSumOccupants = await fetch("http://localhost:8080/getAllOccupant");
+        let jsonData = await getSumOccupants.json();
+        for (let i = 0; i < jsonData.length; i++) {
+            if (jsonData[i].tarifOccupant == selectedValue) {
+                var deadFees = jsonData[i].dead_fees;
+                var medicalFees = jsonData[i].medical_fees;
+                document.getElementById("AccidentDeath").textContent = "Accident Death: " + deadFees + " - FRW";
+                document.getElementById("MedicalOfCover").textContent = "Medical Of Cover: " + medicalFees + " - FRW";
+                document.getElementById("TotalPermanentDisability").textContent = "Total Permanent Disability: " + deadFees + " - FRW";
+
+                break;
+            }
+        }
+
+        //-----------------------closed-----------------------------------------------------------------------
+        // third PartyCheckBox
+        //----------------------
+        const thirdPartyCheckbox = document.getElementById("thirdParty");
+
+        const thirdPartyLiability = thirdPartyCheckbox.checked = true;
+
+        if (thirdPartyLiability) {
+            // console.log("Third Party Liability is: Yes");
+            document.getElementById("ThirdPartyLiability").innerText = "Third Party Liability: Yes";
+        } else {
+            // console.log("Third Party Liability is: No");
+            document.getElementById("ThirdPartyLiability").innerText = "Third Party Liability: No"
+        }
+
+
+        //--------------------------closed---------------------------------------------------------
+        // own damage
+        //------------------
+
+        const damage = document.getElementById("ownDamage");
+        const takeDamage = damage.checked;
+        if (takeDamage) {
+            document.getElementById("OwnDamageLL").innerText = "Own Damage: Yes";
+
+        } else {
+            document.getElementById("OwnDamageLL").innerText = "Own Damage: No";
+
+        }
+        //-------------------------closed-------------------------------------
+        // theft
+        //---------------
+
+        const theft = document.getElementById("theft");
+        if (theft.checked) {
+            document.getElementById("TheftL").innerText = "Theft: Yes";
+        } else {
+            document.getElementById("TheftL").innerText = "Theft: No";
+        }
+        //-------------closed-----------------------------------
+        // fire
+        //-----------
+        const fire = document.getElementById("fire");
+        if (fire.checked) {
+            document.getElementById("FireL").innerText = "Fire: Yes";
+        } else {
+            document.getElementById("FireL").innerText = "Fire: No";
+        }
+        //-----------------closed--------------------------------
+        // occupant
+        //--------------
+        const occupant = document.getElementById("occupant");
+        if (occupant.checked) {
+            document.getElementById("OwnDamageLL").innerText = "Own Damage: Yes";
+            document.getElementById("TheftL").innerText = "Theft: Yes";
+            document.getElementById("FireL").innerText = "Fire: Yes";
+            document.getElementById("OccupantL").innerText = "Occupant: Yes";
+
+
+        } else {
+            document.getElementById("occupantT").innerText = "Occupant: No";
+        }
+
+//---------------------------closed------------------------------------------
+        //tpl
+        //---------------
+        const tpl = document.getElementById("tpl");
+        if (tpl.checked) {
+            document.getElementById("tplL").innerText = "TPL: Yes";
+        } else {
+            document.getElementById("tplL").innerText = "TPL: No";
+        }
+
+
+        var getAllVehicleUsage = await fetch("http://localhost:8080/getVehicleUsageType")
+        var dataVehicleUsage = await getAllVehicleUsage.json();
+        for (var i = 0; i < dataVehicleUsage.length; i++) {
+            var bestVehicleUsage = dataVehicleUsage[i].vehicel_Class;
+
+            var option = document.createElement('option');
+            option.textContent = bestVehicleUsage;
+            VehicleUsageValue.appendChild(option);
+
+
+        }
+
+        var getAllDuration = await fetch("http://localhost:8080/getAllDuration");//duration
+        var dataDuration = await getAllDuration.json();
+        for (let i = 0; i < dataDuration.length; i++) {
+            var bestDuration = dataDuration[i].duration;
+            var option = document.createElement('option');
+            option.textContent = bestDuration;
+            durationValue.appendChild(option);
+
+        }
+        let getVehicleType = await fetch("http://localhost:8080/getVehicleType");
+        let dataVehicleType = await getVehicleType.json();
+        for (let i = 0; i < dataVehicleType.length; i++) {
+            var bestVehicleType = dataVehicleType[i].vehicle_classification;
+            var option = document.createElement("option");
+            option.textContent = bestVehicleType;
+            vehicleTypeValue.appendChild(option);
+            // console.log(bestVehicleType);
+        }
+
+        let getAllTerritorialCoverLimit = await fetch("http://localhost:8080/getTerritorialCoverLimit");
+        let dataTerritorial = await getAllTerritorialCoverLimit.json();
+        for (let i = 0; i < dataTerritorial.length; i++) {
+            var bestTerritorial = dataTerritorial[i].territory;
+            var option = document.createElement('option');
+            option.textContent = bestTerritorial;
+            locationCover.appendChild(option);
+            //console.log('shwing Location: '+bestTerritorial);
+
+        }
+        let getAllOccupant = await fetch("http://localhost:8080/getAllOccupant");
+        let dataOccupant = await getAllOccupant.json();
+        for (let i = 0; i < dataOccupant.length; i++) {
+            var bestOccupant = dataOccupant[i].tarifOccupant;
+            var option = document.createElement('option');
+            option.textContent = bestOccupant;
+            sumInsuredPerOccupants.appendChild(option);
+            // console.log("sum insurent perOccupants: "+ bestOccupant);
+
+        }
+        // showing if excess.vehicle-usage-type is equal vehicleUsageOption
+
+        let getAllExcess = await fetch("http://localhost:8080/getAllExcess");
+        let dataExcess = await getAllExcess.json();
+        let vehicleOption = vehicleUsageOption;
+
+// checking if Own damage is true you will do this
+        for (let i = 0; i < dataExcess.length; i++) {
+
+            if (dataExcess[i].vehicle_usage_type == vehicleOption && document.getElementById("ownDamage").checked) {
+                let optionOwnDamage = dataExcess[i].excessCD;
+                document.getElementById("MinExcessL").innerText = "Min.Excess(Frw): " + optionOwnDamage + " - FRW";
+
+            }
+        }
+
+
+        // checking if  theft is true you will do this
+        for (let i = 0; i < dataExcess.length; i++) {
+
+            if (dataExcess[i].vehicle_usage_type == vehicleOption && document.getElementById("theft").checked) {
+                let optionTheft = dataExcess[i].excessCD;
+                document.getElementById("MinExcess(Frw)").innerText = "Min.Excess(Frw): " + optionTheft + " - FRW";
+
+            }
+        }
+        // checking if fire is true you will do this
+        for (let i = 0; i < dataExcess.length; i++) {
+
+            if (dataExcess[i].vehicle_usage_type == vehicleOption && document.getElementById("fire").checked) {
+                let optionFire = dataExcess[i].excessCD;
+                document.getElementById("MinExcess(Frw)L").innerText = "Min.Excess(Frw): " + optionFire + " - FRW";
+
+            }
+
+
+        }
+        //--------------------------ThirdParty calculation with category of car and life of car---------------------
+        // let manifactureYear = document.getElementById("vehicleManufacturedYear").value;
+
+
+        let manufacturingYear = document.getElementById("vehicleManufacturedYear").value;
+        let currentYear = new Date().getFullYear();
+
+        let carAge = currentYear - manufacturingYear;
+        document.getElementById("age").innerText = "Car Age: " + carAge;
+
+
+        let getAllThirdParty = await fetch("http://localhost:8080/getThirdParty");
+        let dataThirdParty = await getAllThirdParty.json();
+
+        let thirdPartyData = null;
+        let net_premium_thirdParty;
+        for (let i = 0; i < dataThirdParty.length; i++) {
+            if (dataThirdParty[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("thirdParty").checked) {
+                thirdPartyData = dataThirdParty[i].rc_Less_than_orEqual_5ans;
+
+
+                break;
+
+            } else if (dataThirdParty[i].vehicle_type == currentVehicleType && (carAge <= 5 || carAge <= 10) &&
+                document.getElementById("thirdParty").checked) {
+                thirdPartyData = dataThirdParty[i].rc_Greater_than_5ansAndLess_orEqual_10ans;
+
+
+                break;
+            } else if (dataThirdParty[i].vehicle_type == currentVehicleType && carAge > 10 &&
+                document.getElementById("thirdParty").checked) {
+                thirdPartyData = dataThirdParty[i].rc_Greater_than_10ans;
+
+                //document.getElementById("ThirdPartyT").innerText = "third party Liability: " + greaterTenYears;
+                break;
+
+            }
+
+
+        }
+        // Assuming the values of thirdPartyData and durationRate are already assigned
+        let rate = durationRate;
+        // Convertion String to integer ex: 26, 0000 this comma looks like string
+
+        let third = parseInt(thirdPartyData.replace(/,/g, ""));
+        let thirdPartyPremiumBase = third * rate;
+        document.getElementById("ThirdPartyT").innerText = "Third Party Liability: " + thirdPartyPremiumBase + " -Frw";
+        // ownDamage
+
+        //--------- Calculation the money customer will be paid according to vehicle of manufacturing  and category of vehicle----
+
+        let getAllOwnDamage = await fetch("http://localhost:8080/getOwnDamage");
+        let dataOwnDamage = await getAllOwnDamage.json();
+        let damageData;
+        let damagePremium;
+
+        for (let i = 0; i < dataOwnDamage.length; i++) {
+            if (dataOwnDamage[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("ownDamage").checked) {
+                damageData = dataOwnDamage[i].dm_Less_than_orEqual_5ans;
+                break;
+
+            } else if (dataOwnDamage[i].vehicle_type == currentVehicleType && (carAge > 5 && carAge <= 10) && document.getElementById("ownDamage").checked) {
+                damageData = dataOwnDamage[i].dm_Greater_than_5ansAndLess_orEqual_10ans;
+                break;
+
+
+            } else if (dataOwnDamage[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("ownDamage").checked) {
+                damageData = dataOwnDamage[i].dm_Greater_than_10ans;
+                break;
+
+            }
+        }
+
+        damagePremium = damageData * durationRate;
+        document.getElementById("OwnDamageT").innerText = " Own Damage: " + damagePremium + " -Frw";
+        // theft
+        //--------- Calculation the money customer will be paid according to vehicle of manufacturing  and category of vehicle----
+
+        let getAllTheft = await fetch("http://localhost:8080/getTheft");
+        let dataTheft = await getAllTheft.json();
+        let theftData;
+        let theftPremium;
+
+        for (let i = 0; i< dataTheft.length; i++){
+            if (dataTheft[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("theft").checked){
+                theftData = dataTheft[i].vol_Less_than_orEqual_5ans;
+                console.log("theft less 5 years: "+ theftData);
+                break;
+            }
+            else if (dataTheft[i].vehicle_type == currentVehicleType && (carAge > 5 && carAge <= 10) && document.getElementById("theft").checked){
+                theftData = dataTheft[i].vol_Greater_than_5ansAndLess_orEqual_10ans;
+                console.log("greater 5 years: "+theftData);
+                break;
+            }
+            else if (dataTheft[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("theft").checked){
+                theftData = dataTheft[i].vol_Greater_than_10ans;
+                console.log("greater 10 years: "+theftData);
+                break;
+            }
+        }
+        theftPremium= theftData * durationRate;
+        document.getElementById("TheftT").innerText = "Theft: "+theftPremium + " -FRW";
+        // fire
+
+        //--------- Calculation the money customer will be paid according to vehicle of manufacturing  and category of vehicle----
+
+        let getFire = await fetch("http://localhost:8080/getAllFire");
+        let fireData = await getFire.json();
+        let fireKept;
+        let firePremium;
+
+        for (let i = 0;  i < fireData.length; i++){
+            if (fireData[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("fire").checked){
+                fireKept = fireData[i].incendie_Less_than_orEqual_5ans;
+                console.log(" under or equal 5 years: "+fireKept);
+            }
+            else if (fireData[i].vehicle_type == currentVehicleType && (carAge > 5 && carAge <= 10) && document.getElementById("fire").checked){
+                fireKept = fireData[i].incendie_Greater_than_5ansAndLess_orEqual_10ans;
+                console.log(" greater 5 years andLess or equal 10 years: "+fireKept);
+            }
+            else if (fireData[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("fire").checked){
+                fireKept = fireData[i].incendie_Greater_than_10ans;
+                console.log(" greater  10 years: "+fireKept);
+
+            }
+        }
+       firePremium = fireKept * durationRate;
+        document.getElementById("FireT").innerText = "Fire: "+firePremium;
+
+
+
+
+
+    }
+
+
+
+    //--------------------part1 for retrieving list of value--------------------------------------------------------------------
+    // Function to handle DOMContentLoaded event
+    //It retrieves the form element with the id "myForm" using document.getElementById('myForm').
+    // other word is the boss of all id founding on the form
+
+    async function handleDOMContentLoaded() {
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+        });
+    }
+
+    // Add event listener for DOMContentLoaded
+
+    document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
+
+    //This event listener help us to bring data list  on the option field
+    document.addEventListener('DOMContentLoaded', displayData);
+    // showing section in html form
+    //---------------------------------------closing this  part1-----------------------------------------------------------------
+    //-----------------------------------showing section part--------------------------------------
+    async function showSection(sectionNum) {
+        var sections = document.querySelectorAll('.form-section');
+        sections[sectionNum - 1].classList.add('hidden');
+        sections[sectionNum].classList.remove('hidden');
+        //-----------------------------------closing this party-------------------------------------
+
+
+    }
+
+
+</script>
+
+
+</html>

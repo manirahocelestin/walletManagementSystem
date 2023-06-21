@@ -69,7 +69,7 @@
 <div class="form-container">
     <div id="customerRegister">
         <h2>Customer Registration Form</h2>
-        <form action="" method="POST" id="myForm">
+        <form method="POST" id="myForm">
             <!-- division part one-->
 
             <!-- we use class called form-section this form will be hidden-->
@@ -570,24 +570,23 @@
                 <!-- we will call displayData function from javaScript this function will be controlling all activity that will be
                 in this html form those are fetching data from API, Storing data in LocalStorage, localSession, making  summary-->
                 <div>
-                    <button type="submit" onclick="displayData(event)">Submit</button>
+                    <button type="botton" onclick="displayData(event)">Display</button>
                 </div>
                 <div>
-                    <button type="botton" onclick="afterSubmit()">Display</button>
+                    <button type="botton" onclick="afterSubmit()">Summary</button>
                 </div>
 
                 <div>
-                    <button type="submit" onclick="submitInDatabase()">Send</button>
+                    <button type="submit" onclick="displayData()">Sent</button>
                 </div>
 
 
             </div>
         </form>
     </div>
-
+    <!-- this form will show customer the list of what they have written before they make submitting this form will show up summary which will be submitted -->
     <div id="summary">
-        <!-- this form will show customer the list of what they have written before they make submitting this form
-        this form will show up summary which will be submitted-->
+
         <div>
             <h1> Part I Personal identification Summary: </h1>
             <hr>
@@ -639,7 +638,7 @@
 
             <hr>
             <hr>
-            </ul>
+
             <h1> Part III Personal Identification Summary</h1>
             <ul>
                 <li id="Perm_perm_Address_2-S">Perm_perm_Address_2</li>
@@ -697,7 +696,7 @@
 
 </body>
 <script>
-// creating function which will be holding all activities
+    // creating function which will be holding all activities
     async function displayData(event) {
         // Here we  are making declaration for each id from Html form which will accepting value from the user.
         //
@@ -707,7 +706,7 @@
         let customerId = document.getElementById('customerId').value;
         let lEBook = document.getElementById('lE_Book').value;
         let salutation = document.getElementById('salutation');
-        let nation_id_type = document.getElementById('nationIdTYPe')
+        let nation_id_type = document.getElementById('nationIdTYPe');
         let national_id_number = document.getElementById('nationalId').value;
         let customer_name = document.getElementById('customerName').value;
         let surname = document.getElementById('surname').value;
@@ -783,6 +782,62 @@
         let legalStatus = document.getElementById('legal_Status');
         let customerStatus = document.getElementById('customer_Status');
         let LastModifiedData = document.getElementById('dateLastModified').value;
+        //--------------------------------------------------------------------------
+        // field for to submitting in database
+
+        var nationalIdTypeData = document.getElementById("nationIdTYPe").value;
+        // var nationIdList = await fetch("http://localhost:8080/findNationalId");
+        // var data1 = await nationIdList.json();
+        //
+        // for (var i =0; i<data1.lenght; i++){
+        //     if (data1[i].id_type == nationalIdTypeData){
+        //         var resultNationalIdType = data1[i].id;
+        //     }
+        // }
+       // console.log("showing up nationationalIdType = "+nationalIdTypeData);
+
+
+        let salutationD = document.getElementById('salutation').value;
+
+        let visionSBUD = document.getElementById('vision_SBU').value;
+
+        let customerGenderD = document.getElementById('customer_gender').value;
+
+        let placeOfBirthdayD = document.getElementById('place_of_birthday').value;
+        let maritalStatusD = document.getElementById('marital_Status').value;
+        let socialEconomicClassD = document.getElementById('social_economic').value;
+        let nextOfKinIDTypeD = document.getElementById('nextOfKinIDType').value;
+        let nationalityD = document.getElementById('nationality').value;
+        let provinceD = document.getElementById('province').value;
+        let districtD = document.getElementById('district').value;
+        let sectorD = document.getElementById('sector').value;
+        let cellD = document.getElementById('cell').value;
+        let commAddressVillageD = document.getElementById('commAddressVilla').value;
+        let commCountryD = document.getElementById('comm_country').value;
+        let commResidentTypeD = document.getElementById('commResidentType').value;
+        let permProvinceD = document.getElementById('PermProvinceId').value;
+        let permDistrictD = document.getElementById('permDistrict').value;
+        let permSectorD = document.getElementById('perm_sector').value;
+        let permCellD = document.getElementById('permCell').value;
+        let permVillageD = document.getElementById('permVillage').value;
+        let permCountryD = document.getElementById('perm_country').value;
+        let educationD = document.getElementById('education').value;
+        let naicsCodeD = document.getElementById('naics_code').value;
+        let econSubSectCodeISID = document.getElementById('econSubSectCodeISI').value;
+        let relatedPartyD = document.getElementById('relatedParty').value;
+        let relationshipTypeD = document.getElementById('relationshipType').value;
+        let relatedPartyNameD = document.getElementById('relatedPartyName').value;
+        let occupationD = document.getElementById('occupation').value;
+        let empCountryD = document.getElementById('emp_country').value;
+        let empProvinceD = document.getElementById('emp_province').value;
+        let empDistrictD = document.getElementById('emp_district').value;
+        let empSectorD = document.getElementById('emp_sector').value;
+        let empCellD = document.getElementById('emp_cell').value;
+        let empVillageD = document.getElementById('emp_village').value;
+        let incomeD = document.getElementById('income').value;
+        let incomeFrequencyD = document.getElementById('income_Frequency').value;
+        let legalStatusD = document.getElementById('legal_Status').value;
+        let customerStatusD = document.getElementById('customer_Status').value;
 
 
         var getAllSalutation = await fetch("http://localhost:8080/findSalutation");
@@ -1366,123 +1421,134 @@
 
 
         localStorage.setItem('mydata', JSON.stringify(sessionData));
+
+
+
+
+        // submitting data in database using javaScript
+
+
+
+
+        //console.log("showing nation Id type "+nationalIdTypeData)
+        try {
+            const response = await fetch("http://localhost:8080/createCustomer", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+
+
+
+                        customerType: customerType,
+                        customer_ID:  customerId,
+                        salutation: salutationD,
+                        national_ID_Type: nationalIdTypeData,
+                        national_ID_Number: national_id_number,
+                        customer_Name: customer_name,
+                        surname: surname,
+                        forename_1: forename1,
+                        forename_2: forename2,
+                        customer_Acronym: customerAcronym,
+                        vision_OUC: visionOUC,
+                        vision_SBU: visionSBUD,
+                        customer_Open_Date: customerOPenDate,
+                        customer_Gender: customerGenderD,
+                        date_of_Birth: dateOfBirthDay,
+                        place_of_Birth: placeOfBirthdayD,
+                        marital_Status:maritalStatusD,
+
+                        // first part
+                        spouse_Name: spouseName,
+                        social_Economic_Class: socialEconomicClassD,
+                        next_of_kin_Name: nextOfKinName ,
+                        next_of_kin_ID_Type: nextOfKinIDTypeD,
+                        next_of_kin_ID_Number: nextOfKinIdNumber,
+                        next_of_kin_Telephone: nextOfKinTelephone,
+                        next_of_kin_Email_ID: nextOfKinEmailId,
+                        number_Of_Dependants: numberOfDependants,
+                        nationality: nationalityD,
+                        residence: residence,
+                        comm_Address_2: commonAddress2,
+                        province: provinceD,
+                        district: districtD,
+                        sector: sectorD,
+                        cell: cellD,
+                        comm_Address_village: commAddressVillageD,
+                        comm_Country: commCountryD,
+                        comm_Residence_Type: commResidentTypeD,
+                        perm_Address_1: permAddress1,
+                        perm_Address_2: permAddress2,
+                        perm_province_id: permProvinceD,
+                        perm_district: permDistrictD,
+                        perm_sector: permSectorD,
+                        perm_cell: permCellD,
+                        perm_Village: permVillageD,
+                        perm_Country: permCountryD,
+                        email_ID: emailId,
+                        work_Telephone: workTelephone,
+                        home_Telephone: homeTelephone,
+                        fax_Number_1: faxNumber1,
+                        fax_Number_2: faxNumber2,
+                        education: educationD,
+                        customer_TIN: customerIT,
+                        economic_Sub_Sector_Code_ISIC: econSubSectCodeISID,
+                        related_Party: relatedPartyD,
+                        relationship_Type: relationshipTypeD,
+                        related_Party_Name: relatedPartyNameD,
+                        health_Insurance_Number: healthInsuranceNumber,
+                        occupation: occupationD,
+                        employer_Name: employerName,
+                        employee_ID: employeId,
+                        emp_Address_1: empAddress1,
+                        emp_Address_2: empAddress2,
+                        emp_Country: empCountryD,
+                        emp_province: empProvinceD,
+                        emp_district: empDistrictD,
+                        emp_sector: empSectorD,
+                        emp_cell: empCellD,
+                        emp_Village: empVillageD,
+                        income: incomeD,
+                        income_Frequency: incomeFrequencyD,
+                        legal_Status: legalStatusD,
+                        customer_Status: customerStatusD,
+                        date_Last_Modified: LastModifiedData,
+                        le_Book: lEBook,
+                        naics_Code: naicsCodeD,
+                        ssn_Number: ssnNumber
+                    }
+                )
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log(data);
+        } catch (e) {
+            console.log(`An error occurred: ${e}`);
+        }
     }
 
-        async function submitInDatabase(){
-
-            // submitting data in database using javaScript
-            try {
-                const response = await fetch("http://localhost:8080/createCustomer", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(
-                        {
-                            // this field will be taking html id which i have capturing before
-                            // let customerType = document.getElementById("customerType").value;
-                            customerType: customerType,
-                            customer_ID:customerId ,
-                            salutation: salutation,
-                            national_ID_Type:nation_id_type,
-                            national_ID_Number: national_id_number,
-                            customer_Name: customer_name,
-                            surname: surname,
-                            forename_1: forename1,
-                            forename_2: forename2,
-                            customer_Acronym: customerAcronym,
-                            vision_OUC: visionOUC,
-                            vision_SBU:  visionSBU,
-                            customer_Open_Date: customerOPenDate,
-                            customer_Gender: customerGender,
-                            date_of_Birth: dateOfBirthDay,
-                            place_of_Birth: placeOfBirthday,
-                            marital_Status: maritalStatus,
-                            spouse_Name: spouseName,
-                            social_Economic_Class: socialEconomicClass,
-                            next_of_kin_Name: nextOfKinName,
-                            next_of_kin_ID_Type: nextOfKinIDType,
-                            next_of_kin_ID_Number: nextOfKinIdNumber,
-                            next_of_kin_Telephone: nextOfKinTelephone,
-                            next_of_kin_Email_ID: nextOfKinEmailId,
-                            number_Of_Dependants: numberOfDependants,
-                            nationality: nationality,
-                            residence: residence,
-                            comm_Address_2: commonAddress2,
-                            province: province,
-                            district: district,
-                            sector: sector,
-                            cell: cell,
-                            comm_Address_village: commAddressVillage,
-                            comm_Country: commCountry,
-                            comm_Residence_Type: commResidentType,
-                            perm_Address_1:permAddress1,
-                            perm_Address_2: permAddress2,
-                            perm_province_id: permProvince,
-                            perm_district: permDistrict,
-                            perm_sector: permSector,
-                            perm_cell: permCell,
-                            perm_Village: permVillage,
-                            perm_Country: permCountry,
-                            email_ID: emailId,
-                            work_Telephone: workTelephone,
-                            home_Telephone: homeTelephone,
-                            fax_Number_1: faxNumber1,
-                            fax_Number_2: faxNumber2,
-                            education: education,
-                            customer_TIN: customerIT,
-                            economic_Sub_Sector_Code_ISIC: econSubSectCodeISI,
-                            related_Party: relatedParty,
-                            relationship_Type: relationshipType,
-                            related_Party_Name: relatedPartyName,
-                            health_Insurance_Number: healthInsuranceNumber,
-                            occupation: occupation,
-                            employer_Name: employerName,
-                            employee_ID: employeId,
-                            emp_Address_1: empAddress1,
-                            emp_Address_2: empAddress2,
-                            emp_Country: empCountry,
-                            emp_province: empProvince,
-                            emp_district: empDistrict,
-                            emp_sector: empSector,
-                            emp_cell: empCell,
-                            emp_Village: empVillage,
-                            income: income,
-                            income_Frequency: incomeFrequency,
-                            legal_Status: legalStatus,
-                            customer_Status: customerStatus,
-                            date_Last_Modified: LastModifiedData,
-                            le_Book: lEBook,
-                            naics_Code: naicsCode,
-                            ssn_Number: ssnNumber
-                        }
-
-                    )
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log(data);
-            } catch (e) {
-                console.log(`An error occurred: ${e}`);
-            }
-        }
 
 
 
-    document.addEventListener('DOMContentLoaded', async () => {
-        await displayData();
-        var form = document.getElementById('myForm');
-        form.addEventListener('submit', submitInDatabase);
-    });
+    // Function to handle DOMContentLoaded event
+    async function handleDOMContentLoaded() {
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+        });
+    }
+
+    // Add event listener for DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', handleDOMContentLoaded);
 
 
-
-
-
-    document.addEventListener('DOMContentLoaded', displayData);
+     document.addEventListener('DOMContentLoaded', displayData);
 
     async function showSection(sectionNum) {
         var sections = document.querySelectorAll('.form-section');
@@ -1645,10 +1711,10 @@
     var perm_perm_district = convertionCustomerRegister.permDistrict;
     document.getElementById('perm_perm_district-S').textContent = "perm_perm_district: " + perm_perm_district;
     var permSector = convertionCustomerRegister.permSector;
-    document.getElementById('perm_sector-S').textContent = "perm_Sector: " +permSector;
+    document.getElementById('perm_sector-S').textContent = "perm_Sector: " + permSector;
 
     var permCell = convertionCustomerRegister.permCell;
-    document.getElementById('perm-cell-S').textContent = "perm_cell: "+permCell;
+    document.getElementById('perm-cell-S').textContent = "perm_cell: " + permCell;
 
     var perm_village = convertionCustomerRegister.permVillage;
     document.getElementById('perm_village-S').textContent = "perm_village: " + perm_village;
