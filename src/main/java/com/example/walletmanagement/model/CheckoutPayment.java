@@ -19,12 +19,14 @@ public class CheckoutPayment {
     @Id
     private String id;
     private String paymentNumber;
-    private String fullName;
+    private String firstName;
+    private String lastName;
     @Column(unique = true)
     private String plateNumber;
     private String mobileNumber;
     private String paymentAmount;
     private String email;
+    private String address;
     private String transactionStatus;
     private String created_at;
     private String updated_at;

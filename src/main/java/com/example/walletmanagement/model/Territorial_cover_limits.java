@@ -16,7 +16,7 @@ import lombok.ToString;
 @Table(name = "territorial_cover_limits")
 public class Territorial_cover_limits {
     @Id
-    private Long id;
+    private String  id;
     //Location Cover !! attributes titles names are imaginary specified
     private String territory;
     private String  territory_value;

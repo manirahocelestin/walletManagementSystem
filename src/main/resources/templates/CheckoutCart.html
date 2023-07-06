@@ -277,12 +277,13 @@
                         <li id="occupantT">Occupants:</li>
                         <li id="tplT">TPL+(Ext.Family):</li>
                         <li id="TotalNetPremium">Total Net Premium:</li>
-                        <li id="MotorGuarantyFund">Motor Guaranty fund</li>
+                        <li id="MotorGuarantyFund">Motor Guaranty fund:</li>
+                        <li id="PolicyFees">PolicyFees:</li>
                         <li id="TAXABLEPEMIUM">TAXABLE PEMIUM:</li>
                         <li id="VAT@18%">VAT@18%:</li>
                         <hr>
                         <hr>
-                        <h1>Total Premium Payable: </h1>
+                        <h2 id="totalPremiumPayable">Total Premium Payable: </h2>
                         <hr>
                         <hr>
                     </ul>
@@ -298,7 +299,7 @@
             </div>
 
             <div>
-                <!--button type="submit" onclick="displayData()">Sent</button-->
+                <button type="submit" onclick="displayData()">Sent</button>
             </div>
 
 
@@ -323,8 +324,10 @@
         let locationCover = document.getElementById("locationCover");
         let sumInsuredPerOccupants = document.getElementById("sumInsuredPerOccupants");
         let declaredValue = document.getElementById("declaredValue").value;
+        let numberOfOccupantsCovered = document.getElementById("numberOfOccupantsCovered").value;
 
 
+// getting value from list with its owner calculation
         // showing summary for first page for about vehicle verification
 //-------------------------------------------------------------------------------------------------------
         // Those function will help me to set value in field after print them on summary.
@@ -356,7 +359,6 @@
         for (let i = 0; i < territoryCoverAll.length; i++) {
             if (territoryCoverAll[i].value == territorySelected) {
                 var torritoryOption = territoryCoverAll[i].innerHTML;
-
             }
         }
         // sum InsuranceOccupant
@@ -462,14 +464,22 @@
         //----------------------
         const thirdPartyCheckbox = document.getElementById("thirdParty");
 
+        let thirdPartyTrueOrFalse;
+
         const thirdPartyLiability = thirdPartyCheckbox.checked = true;
 
         if (thirdPartyLiability) {
-            // console.log("Third Party Liability is: Yes");
+
             document.getElementById("ThirdPartyLiability").innerText = "Third Party Liability: Yes";
+
+             thirdPartyTrueOrFalse = true;
+
         } else {
-            // console.log("Third Party Liability is: No");
-            document.getElementById("ThirdPartyLiability").innerText = "Third Party Liability: No"
+              document.getElementById("ThirdPartyLiability").innerText = "Third Party Liability: No";
+
+
+            thirdPartyTrueOrFalse = true;
+
         }
 
 
@@ -478,12 +488,27 @@
         //------------------
 
         const damage = document.getElementById("ownDamage");
-        const takeDamage = damage.checked;
-        if (takeDamage) {
-            document.getElementById("OwnDamageLL").innerText = "Own Damage: Yes";
 
+        let damageCheck;
+        let damageTrueOrFalse;
+        damageCheck = damage.checked;
+
+
+
+        if (damageCheck) {
+
+
+              document.getElementById("OwnDamageLL").innerText = "Own Damage: Yes";
+
+              damageTrueOrFalse = true;
+              //console.log("damageTrue or false: " +damageTrueOrFalse);
+
+            // showing No on the list.
         } else {
+
             document.getElementById("OwnDamageLL").innerText = "Own Damage: No";
+            damageTrueOrFalse = false;
+            //console.log("damageTrue or false: "+damageTrueOrFalse);
 
         }
         //-------------------------closed-------------------------------------
@@ -491,43 +516,58 @@
         //---------------
 
         const theft = document.getElementById("theft");
-        if (theft.checked) {
+        let theftTrueOrFalse
+        let theftChecked = theft.checked;
+        if (theftChecked) {
             document.getElementById("TheftL").innerText = "Theft: Yes";
+            theftTrueOrFalse = true;
+
         } else {
             document.getElementById("TheftL").innerText = "Theft: No";
+            theftTrueOrFalse = false;
         }
         //-------------closed-----------------------------------
         // fire
         //-----------
         const fire = document.getElementById("fire");
-        if (fire.checked) {
+        let fireTrueOrFalse;
+        let fireCheck = fire.checked;
+        if (fireCheck) {
+
             document.getElementById("FireL").innerText = "Fire: Yes";
+            fireTrueOrFalse = true;
+
         } else {
             document.getElementById("FireL").innerText = "Fire: No";
+            fireTrueOrFalse = false;
         }
         //-----------------closed--------------------------------
-        // occupant
-        //--------------
-        const occupant = document.getElementById("occupant");
-        if (occupant.checked) {
+
+        //tpl
+        //---------------
+        const tpl = document.getElementById("tpl");
+        let tplTrueOrFalse;
+        let tplCheck = tpl.checked;
+        if (tplCheck) {
+            document.getElementById("tplL").innerText = "TPL: Yes";
+            tplTrueOrFalse = true;
+        } else {
+            document.getElementById("tplL").innerText = "TPL: No";
+            tplTrueOrFalse = false;
+        }
+        const occaptionChecked = document.getElementById("occupant");
+        let occupantTrueOrFalse;
+        let occupantCheck = occaptionChecked.checked;
+        if (occupantCheck) {
             document.getElementById("OwnDamageLL").innerText = "Own Damage: Yes";
             document.getElementById("TheftL").innerText = "Theft: Yes";
             document.getElementById("FireL").innerText = "Fire: Yes";
             document.getElementById("OccupantL").innerText = "Occupant: Yes";
-
+            occupantTrueOrFalse = true;
 
         } else {
-            document.getElementById("occupantT").innerText = "Occupant: No";
-        }
-
-//---------------------------closed------------------------------------------
-        //tpl
-        //---------------
-        const tpl = document.getElementById("tpl");
-        if (tpl.checked) {
-            document.getElementById("tplL").innerText = "TPL: Yes";
-        } else {
-            document.getElementById("tplL").innerText = "TPL: No";
+            document.getElementById("OccupantL").innerText = "Occupant: No";
+            occupantTrueOrFalse = false;
         }
 
 
@@ -587,12 +627,14 @@
         let getAllExcess = await fetch("http://localhost:8080/getAllExcess");
         let dataExcess = await getAllExcess.json();
         let vehicleOption = vehicleUsageOption;
+        console.log("vehicle option: " + vehicleOption);
 
 // checking if Own damage is true you will do this
         for (let i = 0; i < dataExcess.length; i++) {
 
             if (dataExcess[i].vehicle_usage_type == vehicleOption && document.getElementById("ownDamage").checked) {
                 let optionOwnDamage = dataExcess[i].excessCD;
+                //console.log("ownDamage: "+optionOwnDamage);
                 document.getElementById("MinExcessL").innerText = "Min.Excess(Frw): " + optionOwnDamage + " - FRW";
 
             }
@@ -604,6 +646,7 @@
 
             if (dataExcess[i].vehicle_usage_type == vehicleOption && document.getElementById("theft").checked) {
                 let optionTheft = dataExcess[i].excessCD;
+                //console.log("optionTheft: "+optionTheft);
                 document.getElementById("MinExcess(Frw)").innerText = "Min.Excess(Frw): " + optionTheft + " - FRW";
 
             }
@@ -613,12 +656,15 @@
 
             if (dataExcess[i].vehicle_usage_type == vehicleOption && document.getElementById("fire").checked) {
                 let optionFire = dataExcess[i].excessCD;
+                //console.log("optionFire: "+optionFire);
                 document.getElementById("MinExcess(Frw)L").innerText = "Min.Excess(Frw): " + optionFire + " - FRW";
 
             }
 
 
         }
+
+
         //--------------------------ThirdParty calculation with category of car and life of car---------------------
         // let manifactureYear = document.getElementById("vehicleManufacturedYear").value;
 
@@ -633,8 +679,8 @@
         let getAllThirdParty = await fetch("http://localhost:8080/getThirdParty");
         let dataThirdParty = await getAllThirdParty.json();
 
-        let thirdPartyData = null;
-        let net_premium_thirdParty;
+        let thirdPartyData = 0;
+        let total_net_Premium;
         for (let i = 0; i < dataThirdParty.length; i++) {
             if (dataThirdParty[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("thirdParty").checked) {
                 thirdPartyData = dataThirdParty[i].rc_Less_than_orEqual_5ans;
@@ -672,15 +718,15 @@
 
         let getAllOwnDamage = await fetch("http://localhost:8080/getOwnDamage");
         let dataOwnDamage = await getAllOwnDamage.json();
-        let damageData;
-        let damagePremium;
+        let damageData = 0;
+        let damagePremium = 0;
 
         for (let i = 0; i < dataOwnDamage.length; i++) {
             if (dataOwnDamage[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("ownDamage").checked) {
                 damageData = dataOwnDamage[i].dm_Less_than_orEqual_5ans;
                 break;
 
-            } else if (dataOwnDamage[i].vehicle_type == currentVehicleType && (carAge > 5 && carAge <= 10) && document.getElementById("ownDamage").checked) {
+            } else if (dataOwnDamage[i].vehicle_type == currentVehicleType && (carAge <= 5 || carAge <= 10) && document.getElementById("ownDamage").checked) {
                 damageData = dataOwnDamage[i].dm_Greater_than_5ansAndLess_orEqual_10ans;
                 break;
 
@@ -690,70 +736,426 @@
                 break;
 
             }
+
         }
 
         damagePremium = damageData * durationRate;
         document.getElementById("OwnDamageT").innerText = " Own Damage: " + damagePremium + " -Frw";
+
+
         // theft
         //--------- Calculation the money customer will be paid according to vehicle of manufacturing  and category of vehicle----
 
         let getAllTheft = await fetch("http://localhost:8080/getTheft");
         let dataTheft = await getAllTheft.json();
-        let theftData;
-        let theftPremium;
+        let theftData = 0;
+        let theftPremium = 0;
 
-        for (let i = 0; i< dataTheft.length; i++){
-            if (dataTheft[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("theft").checked){
+        for (let i = 0; i < dataTheft.length; i++) {
+            if (dataTheft[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("theft").checked) {
                 theftData = dataTheft[i].vol_Less_than_orEqual_5ans;
-                console.log("theft less 5 years: "+ theftData);
+                console.log("theft less 5 years: " + theftData);
                 break;
-            }
-            else if (dataTheft[i].vehicle_type == currentVehicleType && (carAge > 5 && carAge <= 10) && document.getElementById("theft").checked){
+            } else if (dataTheft[i].vehicle_type == currentVehicleType && (carAge < 5 || carAge <= 10) && document.getElementById("theft").checked) {
                 theftData = dataTheft[i].vol_Greater_than_5ansAndLess_orEqual_10ans;
-                console.log("greater 5 years: "+theftData);
+                console.log("greater 5 years: " + theftData);
                 break;
-            }
-            else if (dataTheft[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("theft").checked){
+            } else if (dataTheft[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("theft").checked) {
                 theftData = dataTheft[i].vol_Greater_than_10ans;
-                console.log("greater 10 years: "+theftData);
+                console.log("greater 10 years: " + theftData);
                 break;
             }
         }
-        theftPremium= theftData * durationRate;
-        document.getElementById("TheftT").innerText = "Theft: "+theftPremium + " -FRW";
+        theftPremium = theftData * durationRate;
+        document.getElementById("TheftT").innerText = "Theft: " + theftPremium + " -FRW";
         // fire
 
         //--------- Calculation the money customer will be paid according to vehicle of manufacturing  and category of vehicle----
 
         let getFire = await fetch("http://localhost:8080/getAllFire");
         let fireData = await getFire.json();
-        let fireKept;
-        let firePremium;
+        let fireKept = 0;
+        let firePremium = 0;
 
-        for (let i = 0;  i < fireData.length; i++){
-            if (fireData[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("fire").checked){
+        for (let i = 0; i < fireData.length; i++) {
+            if (fireData[i].vehicle_type == currentVehicleType && carAge <= 5 && document.getElementById("fire").checked) {
                 fireKept = fireData[i].incendie_Less_than_orEqual_5ans;
-                console.log(" under or equal 5 years: "+fireKept);
-            }
-            else if (fireData[i].vehicle_type == currentVehicleType && (carAge > 5 && carAge <= 10) && document.getElementById("fire").checked){
+
+            } else if (fireData[i].vehicle_type == currentVehicleType && (carAge <= 5 || carAge <= 10) && document.getElementById("fire").checked) {
                 fireKept = fireData[i].incendie_Greater_than_5ansAndLess_orEqual_10ans;
-                console.log(" greater 5 years andLess or equal 10 years: "+fireKept);
-            }
-            else if (fireData[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("fire").checked){
+
+            } else if (fireData[i].vehicle_type == currentVehicleType && carAge > 10 && document.getElementById("fire").checked) {
                 fireKept = fireData[i].incendie_Greater_than_10ans;
-                console.log(" greater  10 years: "+fireKept);
+
 
             }
         }
-       firePremium = fireKept * durationRate;
-        document.getElementById("FireT").innerText = "Fire: "+firePremium;
+        firePremium = fireKept * durationRate;
+        document.getElementById("FireT").innerText = "Fire: " + firePremium + " -FRW";
+
+
+        // occupant
+        //--------------
+        const occupant = document.getElementById("occupant");
+        let totalCombination = 0;
+        if (occupant.checked) {
+
+
+            for (let i = 0; i < dataOwnDamage.length; i++) {
+                if (dataOwnDamage[i].vehicle_type == currentVehicleType && carAge <= 5) {
+                    damageData = dataOwnDamage[i].dm_Less_than_orEqual_5ans;
+                    break;
+
+                } else if (dataOwnDamage[i].vehicle_type == currentVehicleType && (carAge <= 5 || carAge <= 10)) {
+                    damageData = dataOwnDamage[i].dm_Greater_than_5ansAndLess_orEqual_10ans;
+                    break;
+
+
+                } else if (dataOwnDamage[i].vehicle_type == currentVehicleType && carAge > 10) {
+                    damageData = dataOwnDamage[i].dm_Greater_than_10ans;
+                    break;
+
+                }
+            }
+
+            damagePremium = damageData * durationRate;
+            document.getElementById("OwnDamageT").innerText = " Own Damage: 0";
+            //--------------------theft-----------------------------------------------------------------
+
+            for (let i = 0; i < dataTheft.length; i++) {
+                if (dataTheft[i].vehicle_type == currentVehicleType && carAge <= 5) {
+                    theftData = dataTheft[i].vol_Less_than_orEqual_5ans;
+                    // console.log("theft less 5 years: "+ theftData);
+                    break;
+                } else if (dataTheft[i].vehicle_type == currentVehicleType && (carAge <= 5 || carAge <= 10)) {
+                    theftData = dataTheft[i].vol_Greater_than_5ansAndLess_orEqual_10ans;
+                    //console.log("greater 5 years: "+theftData);
+                    break;
+                } else if (dataTheft[i].vehicle_type == currentVehicleType && carAge > 10) {
+                    theftData = dataTheft[i].vol_Greater_than_10ans;
+                    // console.log("greater 10 years: "+theftData);
+                    break;
+                }
+            }
+            theftPremium = theftData * durationRate;
+            document.getElementById("TheftT").innerText = "Theft: 0";
+
+            //------------------fire------------------------------------------------------
+
+            for (let i = 0; i < fireData.length; i++) {
+                if (fireData[i].vehicle_type == currentVehicleType && carAge <= 5) {
+                    fireKept = fireData[i].incendie_Less_than_orEqual_5ans;
+                    //console.log(" under or equal 5 years: "+fireKept);
+                } else if (fireData[i].vehicle_type == currentVehicleType && (carAge <= 5 || carAge <= 10)) {
+                    fireKept = fireData[i].incendie_Greater_than_5ansAndLess_orEqual_10ans;
+                    // console.log(" greater 5 years andLess or equal 10 years: "+fireKept);
+                } else if (fireData[i].vehicle_type == currentVehicleType && carAge > 10) {
+                    fireKept = fireData[i].incendie_Greater_than_10ans;
+                    //console.log(" greater  10 years: "+fireKept);
+
+                }
+
+            }
+            document.getElementById("occupantT").innerText = "Occupant: Yes";
+
+            firePremium = fireKept * durationRate;
+            document.getElementById("FireT").innerText = "Fire: 0 ";
+
+            totalCombination = firePremium + damagePremium + theftPremium;
+            document.getElementById("occupantT").innerText = "Occupant: " + totalCombination + " -FRW";
+        } else {
+            document.getElementById("occupantT").innerText = "Occupant: 0";
+
+        }
+        //-----------------------------------closed--------------------------------------------------------------------------
+
+        // tpl+ plus family for third party liability.
+        let calculateTpl = 0;
+        let totalNetPremium = 0;
+        let totalOccupantWithThirdPart = 0;
+        if (tpl.checked) {
+            calculateTpl = thirdPartyPremiumBase * 0.2;
+            document.getElementById("tplT").innerText = "TPL+(Ext.Family): " + calculateTpl + " -FRW";
+
+            //----------------------Total net Premium with occupant,  third Party and tpl-----------------------------------
+
+
+            if (occupant.checked) {
+                totalNetPremium = totalCombination + calculateTpl + thirdPartyPremiumBase;
+                // document.getElementById("TotalNetPremium").innerText = "Total Net Premium: "+totalNetPremium +" -FRW";
+                //console.log("total Combination: "+totalOccupantWithThirdPart);
+
+
+            } else {
+                // total net premium with thirdParty, ownDamage, fire, thift
+
+                totalNetPremium = firePremium + damagePremium + theftPremium + calculateTpl + thirdPartyPremiumBase;
+
+                //console.log("total : "+totalNetPremium);
+
+            }
+            document.getElementById("TotalNetPremium").innerText = "Total Net Premium: " + totalNetPremium + " -FRW";
+
+        }
+        // If you take Occupant the own damage, theft, fire will calculate  excess in %
+
+        if (occupant.checked) {
+            for (let i = 0; i < dataExcess.length; i++) {
+
+                if (dataExcess[i].vehicle_usage_type == vehicleOption) {
+                    let optionOwnDamage = dataExcess[i].excessCD;
+                    //console.log("ownDamage: "+optionOwnDamage);
+                    document.getElementById("MinExcessL").innerText = "Min.Excess(Frw): " + optionOwnDamage + " - FRW";
+
+                }
+            }
+
+
+            // checking if  theft is true you will do this
+            for (let i = 0; i < dataExcess.length; i++) {
+
+                if (dataExcess[i].vehicle_usage_type == vehicleOption) {
+                    let optionTheft = dataExcess[i].excessCD;
+                    //console.log("optionTheft: "+optionTheft);
+                    document.getElementById("MinExcess(Frw)").innerText = "Min.Excess(Frw): " + optionTheft + " - FRW";
+
+                }
+            }
+            // checking if fire is true you will do this
+            for (let i = 0; i < dataExcess.length; i++) {
+
+                if (dataExcess[i].vehicle_usage_type == vehicleOption) {
+                    let optionFire = dataExcess[i].excessCD;
+                    //console.log("optionFire: "+optionFire);
+                    document.getElementById("MinExcess(Frw)L").innerText = "Min.Excess(Frw): " + optionFire + " - FRW";
+
+                }
+
+
+            }
+
+        }
+
+
+        // how to calculate net premium
+        // we will take third party base * 10/100;
+
+
+        let motorGuaranty = 0;
+        motorGuaranty = thirdPartyPremiumBase * 0.1;
+        document.getElementById("MotorGuarantyFund").innerText = "Motor Guaranty fund: " + motorGuaranty + " -FRW";
+
+        // policy fees
+
+        let getTerritoryLocation = await fetch("http://localhost:8080/getTerritorialCoverLimit");
+        let dataTerritory = await getTerritoryLocation.json();
+        let bestTerritory;
+        let rwanda = 2500;
+        let comessa_rwanda = 10000 + rwanda;
+        let cpgl_RwandaWith = 10000 + rwanda;
+        let totalPolicyFees = 0;
+
+
+        for (let i = 0; i < dataTerritory.length; i++) {
+            bestTerritory = dataTerritory[i].territory_value;
+
+            if (dataTerritory[i].territory == torritoryOption && bestTerritory == 1) {
+                totalPolicyFees = rwanda;
+
+
+            } else if (dataTerritory[i].territory == torritoryOption && bestTerritory == 2) {
+                totalPolicyFees = comessa_rwanda;
+
+            } else if (dataTerritory[i].territory == torritoryOption && bestTerritory == 3) {
+                totalPolicyFees = cpgl_RwandaWith;
+
+            }
+        }
+        document.getElementById("PolicyFees").innerText = "Policy Fees: " + totalPolicyFees + " -FRW";
+
+        // calculate percent for each location
+        let rwandaPercentage = 0;
+        let comessa_rwandaPercentage = 0.3;
+        let cpgl_rwandaPercentage = 0.3;
+        let percentageLocation = 0;
+
+        for (let i = 0; i < dataTerritory.length; i++) {
+            bestTerritory = dataTerritory[i].territory_value;
+
+            if (dataTerritory[i].territory == torritoryOption && bestTerritory == 1) {
+                percentageLocation = rwandaPercentage ;
+
+
+            } else if (dataTerritory[i].territory == torritoryOption && bestTerritory == 2) {
+                percentageLocation = comessa_rwandaPercentage;
+
+            } else if (dataTerritory[i].territory == torritoryOption && bestTerritory == 3) {
+                percentageLocation = cpgl_rwandaPercentage;
+
+            }
+        }
+        console.log("percentage: "+percentageLocation);
+
+
+
+        // taxable premium is equal total net premium + total policy frees
+
+        let taxablePremium = totalNetPremium + totalPolicyFees;
+        document.getElementById("TAXABLEPEMIUM").innerText = "TAXABLE PEMIUM: " + taxablePremium + " -FRW";
+
+        // VAT @ 18% I will take net premium + total policy fees
+
+        let vat = taxablePremium * 0.18;
+        document.getElementById("VAT@18%").innerText = "VAT@18%: " + vat + " -FRW";
+
+        let totalPremiumPayable = taxablePremium + motorGuaranty + motorGuaranty;
+        document.getElementById("totalPremiumPayable").innerText = "Total Premium Payable: " + totalPremiumPayable + " (FRW)";
+
+        let waiveOfExcess = 0;
+        let totalPremiumRwanda = waiveOfExcess + totalNetPremium;
+
+        let ExtensionCOMESA = totalPremiumRwanda * percentageLocation;
+       // let netPremium = totalPremiumRwanda + ExtensionCOMESA;
 
 
 
 
+
+
+            // DataBase Part
+        // Create database field will keep value hold value from form
+
+        // Passing value from html form
+
+        let VehicleUsageValueD = document.getElementById("VehicleUsage").value;
+        let vehicleModelValueD = document.getElementById("vehicleModel").value;
+        let vehicleTypeValueD = document.getElementById("vehicleType").value;
+        let vehiclePlateNoValueD = document.getElementById("vehiclePlateNo").value;
+        let vehicleManufacturedYearD = document.getElementById("vehicleManufacturedYear").value;
+        let vehicleBrandValueD = document.getElementById("vehicleBrand").value;
+        let vehicleSeatCapacityValueD = document.getElementById("vehicleSeat").value;
+        let vehicleChassisNumberValueD = document.getElementById("vehicleChassisNumber").value;
+        let durationValueD = document.getElementById("duration").value;
+        let locationCoverD = document.getElementById("locationCover").value;
+        let sumInsuredPerOccupantsD = document.getElementById("sumInsuredPerOccupants").value;
+        let declaredValueD = document.getElementById("declaredValue").value;
+        let numberOfOccupantsCoveredD = document.getElementById("numberOfOccupantsCovered").value;
+
+
+        // getting value from list with its owner calculation
+        let startDateD = document.getElementById('StartDate').textContent ="StartDate: " +startingDate;
+        let endDateD = document.getElementById("EndDate").textContent = "EndDate: " +endingDate;
+        let accidentDeath = document.getElementById("AccidentDeath").textContent = "Accident Death: " + deadFees + " - FRW";
+        let medicalOfCover = document.getElementById("MedicalOfCover").textContent = "Medical Of Cover: " + medicalFees + " - FRW";
+        let totalPermanentDisability = document.getElementById("TotalPermanentDisability").textContent = "Total Permanent Disability: " + deadFees + " - FRW";
+        let thirdPartyLiabilityD = document.getElementById("thirdParty").innerText = thirdPartyTrueOrFalse;
+        let ownDamageD = document.getElementById("ownDamage").innerText = damageTrueOrFalse;
+        let theftD = document.getElementById("theft").innerText = theftTrueOrFalse;
+        let fireD = document.getElementById("fire").innerText = fireTrueOrFalse;
+        let tplD = document.getElementById("tpl").innerText = tplTrueOrFalse;
+        let occupantD = document.getElementById("occupant").innerText = occupantTrueOrFalse;
+
+
+        try {
+            const response = await fetch("http://localhost:8080/saveCart", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+
+                        plateNumber: vehiclePlateNoValueD,
+                        vehicleType: VehicleUsageValueD,
+                        usageType: vehicleTypeValueD,
+                        vehicleManufacturedYear: vehicleManufacturedYearD,
+                        vehicleBrand: vehicleBrandValueD,
+                        vehicleModel: vehicleModelValueD,
+                        vehicleChassisNumber: vehicleChassisNumberValueD,
+                        vehicleSeatCapacity: vehicleSeatCapacityValueD,
+                        duration: durationValueD,
+                        territory: locationCoverD,
+                        declaredValueSumInsured: declaredValueD,
+                        numberOfOccupantCovered: numberOfOccupantsCoveredD,
+                        sumInsuredPerOccupant: sumInsuredPerOccupantsD,
+                        thirdParty: thirdPartyLiabilityD,
+                        ownDamage: ownDamageD,
+                        theft: theftD,
+                        fire: fireD,
+                        occupant: occupantD,
+                        tpl: tplD,
+                        startDate: startingDate,
+                        endingDate: endingDate,
+                        premiumBase: thirdPartyPremiumBase ,
+                        netPremiumOne: thirdPartyPremiumBase,
+                        waiveOfExcess: waiveOfExcess,
+                        totalPremiumRwanda: totalPremiumRwanda,
+                        extensionCOMESA: ExtensionCOMESA ,
+                        netPremiumTwo: totalNetPremium,
+                        motorGuarantyFund: motorGuaranty,
+                        policyFees: totalPolicyFees,
+                        totalPremiumPayable: totalPremiumPayable,
+                        transactionStatus: "Success",
+                        taxablepremium: taxablePremium,
+                        vatat18percent: vat
+                    }
+                )
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log(data);
+        } catch (e) {
+            console.log(`An error occurred: ${e}`);
+        }
+
+
+        // Session part
+        //----------------------------------------------------------------------------------------------
+        // getting summary field with value form different calculation, after saving them in dataSession
+
+        let startDateS = document.getElementById('StartDate').value = startingDate ;
+        let endDateDS = document.getElementById("EndDate").value = endingDate;
+        let taxablePre= document.getElementById("TAXABLEPEMIUM").value = taxablePremium +" -FRW";
+        let vital = document.getElementById("VAT@18%").value = vat +" -FRW";
+        let totalPremiumPaye = document.getElementById("totalPremiumPayable").value = totalPremiumPayable+" -FRW" ;
+        let policyFee = document.getElementById("PolicyFees").value = totalPolicyFees+ " -FRW";
+
+
+
+        const dataSession = {
+            VehicleUsageValue: VehicleUsageValue.value,
+            vehicleModelValue,
+            vehicleTypeValue: vehicleTypeValue.value,
+            vehiclePlateNoValue,
+            vehicleManufacturedYear,
+            vehicleBrandValue,
+            vehicleSeatCapacityValue,
+            vehicleChassisNumberValue,
+            durationValue: durationValue.value,
+            locationCover: locationCover.value,
+            numberOfOccupantsCovered,
+            sumInsuredPerOccupants: sumInsuredPerOccupants.value,
+            declaredValue,
+            startDateS,
+            endDateDS,
+            taxablePre,
+            vital,
+            totalPremiumPaye,
+            policyFee,
+
+
+
+            // expirationTime: Date.now() + 30 * 60 * 1000 // Set expiration time to 30 minutes from now
+            expirationTime: Date.now() + 60 * 60 * 1000 // Set expiration time to 1 hour from now
+
+        };
+        sessionStorage.setItem("online", JSON.stringify(dataSession));
+        localStorage.setItem("dataStorage", JSON.stringify(dataSession));
 
     }
-
 
 
     //--------------------part1 for retrieving list of value--------------------------------------------------------------------

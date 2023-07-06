@@ -51,7 +51,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             optionalShoppingCart.setVehicleManufacturedYear(cart.getVehicleManufacturedYear());
             optionalShoppingCart.setVehicleBrand(cart.getVehicleBrand());
             optionalShoppingCart.setVehicleModel(cart.getVehicleModel());
-            optionalShoppingCart.setVehiclePlateNumber(cart.getVehiclePlateNumber());
             optionalShoppingCart.setVehicleChassisNumber(cart.getVehicleChassisNumber());
             optionalShoppingCart.setVehicleSeatCapacity(cart.getVehicleSeatCapacity());
             optionalShoppingCart.setDuration(cart.getDuration());

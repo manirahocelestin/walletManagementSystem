@@ -44,10 +44,12 @@ public class CheckoutPaymentServiceImpl implements CheckoutPaymentService {
             // Update the fields of the existing payment with the new values;
             existingPayment.setId(checkoutPayment.getId());
             existingPayment.setPaymentNumber(checkoutPayment.getPaymentNumber());
-            existingPayment.setFullName(checkoutPayment.getFullName());
+            existingPayment.setFirstName(checkoutPayment.getFirstName());
+            existingPayment.setLastName(existingPayment.getLastName());
             existingPayment.setPlateNumber(checkoutPayment.getPlateNumber());
             existingPayment.setMobileNumber(checkoutPayment.getMobileNumber());
             existingPayment.setEmail(checkoutPayment.getEmail());
+            existingPayment.setAddress(checkoutPayment.getAddress());
             existingPayment.setTransactionStatus(checkoutPayment.getTransactionStatus());
             existingPayment.setCreated_at(checkoutPayment.getCreated_at());
             existingPayment.setUpdated_at(checkoutPayment.getUpdated_at());
