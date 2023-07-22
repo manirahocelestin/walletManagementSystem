@@ -27,6 +27,7 @@ public class CheckoutPayment {
     private String paymentAmount;
     private String email;
     private String address;
+    private String transactionId;
     private String transactionStatus;
     private String created_at;
     private String updated_at;

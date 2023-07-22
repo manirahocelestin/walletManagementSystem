@@ -298,9 +298,9 @@
                 <!--button type="botton" onclick="afterSubmit()">Summary</button-->
             </div>
 
-            <div>
-                <button type="submit" onclick="displayData()">Sent</button>
-            </div>
+<!--            <div>-->
+<!--                <button type="submit" onclick="displayData()">Sent</button>-->
+<!--            </div>-->
 
 
         </form>
@@ -312,6 +312,9 @@
 </body>
 <script>
     async function displayData(event) {
+
+
+
         let VehicleUsageValue = document.getElementById("VehicleUsage");
         let vehicleModelValue = document.getElementById("vehicleModel").value;
         let vehicleTypeValue = document.getElementById("vehicleType");
@@ -1055,6 +1058,8 @@
         let tplD = document.getElementById("tpl").innerText = tplTrueOrFalse;
         let occupantD = document.getElementById("occupant").innerText = occupantTrueOrFalse;
 
+        //----------------------------------------------------------------------
+       /* let pending = "Pending";
 
         try {
             const response = await fetch("http://localhost:8080/saveCart", {
@@ -1095,7 +1100,7 @@
                         motorGuarantyFund: motorGuaranty,
                         policyFees: totalPolicyFees,
                         totalPremiumPayable: totalPremiumPayable,
-                        transactionStatus: "Success",
+                        transactionStatus: pending,
                         taxablepremium: taxablePremium,
                         vatat18percent: vat
                     }
@@ -1109,7 +1114,7 @@
             console.log(data);
         } catch (e) {
             console.log(`An error occurred: ${e}`);
-        }
+        }*/
 
 
         // Session part
@@ -1145,6 +1150,20 @@
             vital,
             totalPremiumPaye,
             policyFee,
+            thirdPartyLiabilityD,
+            ownDamageD,
+            theftD,
+            fireD,
+            tplD,
+            occupantD,
+            thirdPartyPremiumBase,
+            thirdPartyPremiumBase,
+            waiveOfExcess,
+            totalPremiumRwanda,
+            ExtensionCOMESA,
+            totalNetPremium,
+            motorGuaranty,
+            taxablePremium,
 
 
 
@@ -1155,7 +1174,10 @@
         sessionStorage.setItem("online", JSON.stringify(dataSession));
         localStorage.setItem("dataStorage", JSON.stringify(dataSession));
 
+
+
     }
+
 
 
     //--------------------part1 for retrieving list of value--------------------------------------------------------------------

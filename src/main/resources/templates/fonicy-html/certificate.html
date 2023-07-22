@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- This script got from frontendfreecode.com -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background: #f5f5f5;
+            margin: 20px;
+        }
+
+        .rounded {
+            border-radius: 1rem;
+        }
+
+        .nav-pills .nav-link {
+            color: #555;
+        }
+
+        .nav-pills .nav-link.active {
+            color: white;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="row">
+    <div class="col-lg-6 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+
+                <!-- Credit card form content -->
+                <div class="tab-content">
+                    <!-- credit card info-->
+                    <div id="credit-card" class="tab-pane fade show active pt-3">
+                        <form role="form" method="POST" id="myForm">
+
+                            <div class="form-group">
+                                <label for="firstname">
+                                    <h6>First Name</h6>
+                                </label>
+                                <input type="text" name="firstname" placeholder="Card Owner Name" id="firstname"
+                                       required class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">
+                                    <h6>Last Name</h6>
+                                </label>
+                                <input type="text" name="lastname" placeholder="Card Owner Name" id="lastname"
+                                       required class="form-control"/>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="PlateNo">
+                                    <h6>Plate number</h6>
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" name="plateNumber" placeholder="Enter plate number"
+                                           id="PlateNo" class="form-control" required
+                                           style="pointer-events: none;"/>
+                                    <div class="input-group-append">
+                                            <span class="input-group-text text-muted"> <i class="fas fa-car mx-1"></i>
+                                                <i class="fas fa-truck mx-1"></i> <i class="fas fa-motorcycle mx-1"></i>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mobileNumber">
+                                    <h6>CertificateNo:</h6>
+                                </label>
+                                <input type="tel" placeholder="Mobile Number" class="form-control" id="mobileNumber"
+                                       name="mobileNumber" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="plateNumber">
+                                    <h6>PlateNumber:</h6>
+                                </label>
+                                <input type="tel" placeholder="Mobile Number" class="form-control" id="plateNumber"
+                                       name="mobileNumber" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="startDate">
+                                    <h6>startDate:</h6>
+                                </label>
+                                <input type="email" placeholder="Email" class="form-control" id="startDate" name="email"
+                                       required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="endingDate">
+                                    <h6>EndDate:</h6>
+                                </label>
+                                <input type="text" placeholder="Address for your location" class="form-control"
+                                       id="endingDate" name="address"
+                                       required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="model">
+                                    <h6>Model:</h6>
+                                </label>
+                                <input type="text" placeholder="Address for your location" class="form-control"
+                                       id="model" name="address"
+                                       required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="chessis">
+                                    <h6>Chessis:</h6>
+                                </label>
+                                <input type="text" placeholder="Address for your location" class="form-control"
+                                       id="chessis" name="address"
+                                       required/>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" onclick="mainDatafunction()"
+                                        class="subscribe btn btn-primary btn-block shadow-sm">Confirm
+                                    Payment
+                                </button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <!-- End -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="bcl"><a style="font-size:8pt;text-decoration:none;" href="http://www.devanswer.com">Free Frontend</a></div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+
+
+
+
+
+
+
+
+    // generate Id
+    function generateId() {
+        const randomId = Math.floor(Math.random() * 100000000); // Generate a random 8-digit number
+        const id = `CID ${randomId}`;
+        return id;
+    }
+
+
+    // Call the function
+    //mainDatafunction();
+
+    // Add event listener for DOMContentLoaded
+
+    document.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
+
+    //This event listener help us to bring data list  on the option field
+    document.addEventListener('DOMContentLoaded', mainDatafunction);
+
+    async function handleDOMContentLoaded() {
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+        });
+    }
+
+
+</script>
+
+</body>
+
+</html>

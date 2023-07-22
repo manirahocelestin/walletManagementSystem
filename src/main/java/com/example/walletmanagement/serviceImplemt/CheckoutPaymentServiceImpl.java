@@ -50,6 +50,7 @@ public class CheckoutPaymentServiceImpl implements CheckoutPaymentService {
             existingPayment.setMobileNumber(checkoutPayment.getMobileNumber());
             existingPayment.setEmail(checkoutPayment.getEmail());
             existingPayment.setAddress(checkoutPayment.getAddress());
+            existingPayment.setTransactionId(checkoutPayment.getTransactionId());
             existingPayment.setTransactionStatus(checkoutPayment.getTransactionStatus());
             existingPayment.setCreated_at(checkoutPayment.getCreated_at());
             existingPayment.setUpdated_at(checkoutPayment.getUpdated_at());

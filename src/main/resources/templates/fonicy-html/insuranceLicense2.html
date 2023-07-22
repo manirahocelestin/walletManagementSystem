@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Information Form</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+
+        .result-table {
+            margin-top: 20px;
+        }
+
+        .result-table th {
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        .result-table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Car Information Form</h1>
+    <form id="carForm">
+        <div class="form-group">
+            <label for="licensePlate">License Plate Number:</label>
+            <input type="text" class="form-control" id="licensePlate" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Check Information</button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // Function to handle form submission
+   async function handleSubmit(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the license plate number entered by the user
+        const licensePlate = document.getElementById('licensePlate').value;
+
+
+        // Simulate an API call to check if the license plate exists
+
+        const exists = checkLicensePlateExists(licensePlate);
+
+        if (exists) {
+            // Simulate an API call to retrieve car information
+
+            const carInfo = await getCarInformation(licensePlate);
+
+            console.log("mainiraho: "+carInfo);
+
+            // Simulate an API call to check if the car has insurance
+            const hasInsurance = checkInsuranceStatus(licensePlate);
+
+            // Display the results
+            displayResults(carInfo, hasInsurance);
+        } else {
+            // Display an error message if the license plate doesn't exist
+            displayError('License plate number does not exist.');
+        }
+    }
+
+    // Simulated function to check if the license plate exists
+    async function checkLicensePlateExists(licensePlate) {
+        // Replace with your actual implementation to check if the license plate exists in your database or system
+        // Return true if it exists, false otherwise
+        let getAllCart = await fetch("http://localhost:8080/AllCart");
+        let dataCart = await getAllCart.json();
+        for (let i = 0; i< dataCart.length; i++){
+            if (dataCart[i].plateNumber == licensePlate){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    }
+
+    // Simulated function to retrieve car information
+    async function getCarInformation(licensePlate) {
+        // Replace with your actual implementation to retrieve car information based on the license plate
+        // Return the car information as an object or JSON
+        let getCart = await fetch("http://localhost:8080/AllCart");
+        let cartData = await getCart.json();
+        let carPlateNum ;
+        let carModel ;
+        let carYear ;
+        let carBrand;
+        let carInsurance;
+
+        for (let i = 0; i< cartData.length; i++){
+            if (cartData[i].plateNumber == licensePlate){
+               carPlateNum = cartData[i].plateNumber;
+                carModel = cartData[i].vehicleModel;
+                carYear = cartData[i].vehicleManufacturedYear;
+                carBrand  = cartData[i].vehicleBrand;
+                carInsurance = cartData[i].transactionStatus;
+
+
+                console.log("carPlateNumber: "+carPlateNum);
+                console.log("carPlateNumber: "+carModel);
+
+                console.log("carPlateNumber: "+carYear);
+                console.log("carPlateNumber: "+carBrand);
+                console.log("carInsurance: "+carInsurance);
+
+
+
+                return {
+                    make: carPlateNum,
+                    model: carModel,
+                    year: carYear,
+                    color: carBrand,
+                    insurance: carInsurance
+                    // carPlateNum,
+                    // carModel,
+                    // carYear,
+                    // carBrand
+
+
+
+                };
+
+
+            }
+
+
+
+        }
+
+    }
+
+    // Simulated function to check if the car has insurance
+    function checkInsuranceStatus(licensePlate) {
+        // Replace with your actual implementation to check if the car has insurance based on the license plate
+        // Return true if it has insurance, false otherwise
+        return true;
+    }
+
+    // Function to display the results
+   async function displayResults(carInfo, hasInsurance) {
+        const resultContainer = document.getElementById('result');
+        resultContainer.innerHTML = `
+        <h3 class="mt-4">Car Information:</h3>
+        <table class="table result-table">
+          <tbody>
+            <tr>
+              <th scope="row">Plate Number</th>
+              <td>${carInfo.make}</td>
+            </tr>
+            <tr>
+              <th scope="row">Model</th>
+              <td>${carInfo.model}</td>
+            </tr>
+            <tr>
+              <th scope="row">Year</th>
+              <td>${carInfo.year}</td>
+            </tr>
+            <tr>
+              <th scope="row">Brand</th>
+              <td>${carInfo.color}</td>
+            </tr>
+            <tr>
+              <th scope="row">Insurance</th>
+              <td>${carInfo.insurance}</td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    // Function to display an error message
+    function displayError(message) {
+        const resultContainer = document.getElementById('result');
+        resultContainer.innerHTML = `
+        <div class="alert alert-danger mt-4" role="alert">
+          ${message}
+        </div>
+      `;
+    }
+
+    // Add form submission event listener
+    document.getElementById('carForm').addEventListener('submit', handleSubmit);
+</script>
+</body>
+</html>
+

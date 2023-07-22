@@ -76,12 +76,12 @@
             <div class="form-section">
                 <div class="form-row">
                     <div>
-                        <label for="customerType">Customer Id:</label>
-                        <input type="text" id="customerId" name="customerType" required>
+                        <label for="customerType">Customer Type:</label>
+                        <input type="text" id="customerType" name="customerType" required>
                     </div>
                     <div>
-                        <label for="customerId">Customer Type:</label>
-                        <input type="text" id="customerType" name="customer_TYPE" required>
+                        <label for="customerId">Customer ID:</label>
+                        <input type="text" id="customerId" name="customer_TYPE" required>
                     </div>
                 </div>
                 <div class="form-row">
@@ -567,6 +567,14 @@
                         <input type="date" id="dateLastModified" name="date_Last_Modified" required>
                     </div>
                 </div>
+                <div class="form-row">
+
+                    <div>
+                        <label for="plateNumber">Plate Number:</label>
+                        <input type="text" id="plateNumber" name="plateNumber"  placeholder="format of plate number RAE 2023A" required>
+                    </div>
+                </div>
+
                 <!-- we will call displayData function from javaScript this function will be controlling all activity that will be
                 in this html form those are fetching data from API, Storing data in LocalStorage, localSession, making  summary-->
                 <div>
@@ -782,6 +790,7 @@
         let legalStatus = document.getElementById('legal_Status');
         let customerStatus = document.getElementById('customer_Status');
         let LastModifiedData = document.getElementById('dateLastModified').value;
+        let plateNumber = document.getElementById("plateNumber").value;
         //--------------------------------------------------------------------------
         // field for to submitting in database
 
@@ -838,6 +847,7 @@
         let incomeFrequencyD = document.getElementById('income_Frequency').value;
         let legalStatusD = document.getElementById('legal_Status').value;
         let customerStatusD = document.getElementById('customer_Status').value;
+        let plateNumberD = document.getElementById("plateNumber").value;
 
 
         var getAllSalutation = await fetch("http://localhost:8080/findSalutation");
@@ -1414,7 +1424,8 @@
             incomeFrequency: incomeFrequency.value,
             customerStatus: customerStatus.value,
             legalStatus: legalStatus.value,
-            LastModifiedData
+            LastModifiedData,
+            plateNumber
 
 
         }
@@ -1442,8 +1453,8 @@
 
 
 
-                        customerType: customerId,
-                        customer_ID: customerType,
+                        customerType: customerType,
+                        customer_ID:  customerId,
                         salutation: salutationD,
                         national_ID_Type: nationalIdTypeData,
                         national_ID_Number: national_id_number,
@@ -1515,6 +1526,7 @@
                         legal_Status: legalStatusD,
                         customer_Status: customerStatusD,
                         date_Last_Modified: LastModifiedData,
+                        plateNumber: plateNumberD,
                         le_Book: lEBook,
                         naics_Code: naicsCodeD,
                         ssn_Number: ssnNumber
@@ -1530,6 +1542,8 @@
         } catch (e) {
             console.log(`An error occurred: ${e}`);
         }
+
+
     }
 
 

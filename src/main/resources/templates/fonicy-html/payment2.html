@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- This script got from frontendfreecode.com -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background: #f5f5f5;
+            margin: 20px;
+        }
+
+        .rounded {
+            border-radius: 1rem;
+        }
+
+        .nav-pills .nav-link {
+            color: #555;
+        }
+
+        .nav-pills .nav-link.active {
+            color: white;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="row">
+    <div class="col-lg-6 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
+                    <!-- Credit card form tabs -->
+                    <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
+                        <li class="nav-item">
+                            <a data-toggle="pill" href="#credit-card" class="nav-link active"> <i
+                                    class="fas fa-mobile-alt mr-2"></i> Mobile Payment </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="pill" href="#paypal" class="nav-link"> <i
+                                    class="fab fa-paypal mr-2"></i> Paypal </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="pill" href="#net-banking" class="nav-link"> <i
+                                    class="fas fa-university mr-2"></i> Net Banking </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End -->
+                <!-- Credit card form content -->
+                <div class="tab-content">
+                    <!-- credit card info-->
+                    <div id="credit-card" class="tab-pane fade show active pt-3">
+                        <form role="form" method="POST" id="myForm">
+
+                            <div class="form-group">
+                                <label for="firstname">
+                                    <h6>First Name</h6>
+                                </label>
+                                <input type="text" name="firstname" placeholder="Card Owner Name" id="firstname"
+                                       required class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">
+                                    <h6>Last Name</h6>
+                                </label>
+                                <input type="text" name="lastname" placeholder="Card Owner Name" id="lastname"
+                                       required class="form-control"/>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="PlateNo">
+                                    <h6>Plate number</h6>
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" name="plateNumber" placeholder="Enter plate number"
+                                           id="PlateNo" class="form-control" required
+                                           style="pointer-events: none;"/>
+                                    <div class="input-group-append">
+                                            <span class="input-group-text text-muted"> <i class="fas fa-car mx-1"></i>
+                                                <i class="fas fa-truck mx-1"></i> <i class="fas fa-motorcycle mx-1"></i>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mobileNumber">
+                                    <h6>Mobile Number</h6>
+                                </label>
+                                <input type="tel" placeholder="Mobile Number" class="form-control" id="mobileNumber"
+                                       name="mobileNumber" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paymentAmount">
+                                    <h6>Payment Amount</h6>
+                                </label>
+                                <div class="input-group">
+                                    <h6 id="paymentAmount"> </h6>
+                                    <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fas fa-money-bill"></i>
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">
+                                    <h6>Email</h6>
+                                </label>
+                                <input type="email" placeholder="Email" class="form-control" id="email" name="email"
+                                       required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">
+                                    <h6>Address</h6>
+                                </label>
+                                <input type="text" placeholder="Address for your location" class="form-control"
+                                       id="address" name="address"
+                                       required/>
+                            </div>
+
+                            <div class="card-footer">
+                                <button type="submit" onclick="mainDatafunction()"
+                                        class="subscribe btn btn-primary btn-block shadow-sm">Confirm
+                                    Payment
+                                </button>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <!-- End -->
+                    <!-- Paypal info -->
+                    <div id="paypal" class="tab-pane fade pt-3">
+                        <h6 class="pb-2">Select your paypal account type</h6>
+                        <div class="form-group">
+                            <label class="radio-inline"> <input type="radio" name="optradio" checked/> Domestic
+                            </label> <label class="radio-inline"> <input type="radio" name="optradio"
+                                                                         class="ml-5"/>International </label>
+                        </div>
+                        <p>
+                            <button type="button" class="btn btn-primary"><i class="fab fa-paypal mr-2"></i> Log
+                                into my Paypal
+                            </button>
+                        </p>
+                        <p class="text-muted">
+                            Note: After clicking on the button, you will be directed to a secure gateway for
+                            payment. After completing the payment process, you will be redirected back to the
+                            website to view details of your order.
+                        </p>
+                    </div>
+                    <!-- End -->
+                    <!-- bank transfer info -->
+                    <div id="net-banking" class="tab-pane fade pt-3">
+                        <div class="form-group">
+                            <label for="Select Your Bank">
+                                <h6>Select your Bank</h6>
+                            </label>
+                            <select class="form-control" id="ccmonth">
+                                <option value="" selected disabled>--Please select your Bank--</option>
+                                <option>Bank 1</option>
+                                <option>Bank 2</option>
+                                <option>Bank 3</option>
+                                <option>Bank 4</option>
+                                <option>Bank 5</option>
+                                <option>Bank 6</option>
+                                <option>Bank 7</option>
+                                <option>Bank 8</option>
+                                <option>Bank 9</option>
+                                <option>Bank 10</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                <button type="button" onclick="mainDatafunction()" class="btn btn-primary"><i
+                                        class="fas fa-mobile-alt mr-2"></i>
+                                    Proceed Payment
+                                </button>
+                            </p>
+
+                        </div>
+                        <p class="text-muted">
+                            Note: After clicking on the button, you will be directed to a secure gateway for
+                            payment. After completing the payment process, you will be redirected back to the
+                            website to view details of your order.
+                        </p>
+                    </div>
+                    <!-- End -->
+                    <!-- End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="bcl"><a style="font-size:8pt;text-decoration:none;" href="http://www.devanswer.com">Free Frontend</a></div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+
+
+    //-------------------------------------------------
+
+    async function mainDatafunction() {
+
+        // Retrieve the stored value from sessionStorage
+        const cartInfo = localStorage.getItem('dataStorage');
+        // retrieve value into object using JSON.parse
+        const cartValue = JSON.parse(cartInfo);
+
+        let numberPlate = cartValue.vehiclePlateNoValue;
+        let totalMount = cartValue.totalPremiumPaye;
+
+
+// passing totalPremiumPayable and plate number to input fields with this ID paymentAmount, PlateNo
+
+        document.getElementById("PlateNo").value = numberPlate;
+      let amount =  document.getElementById("paymentAmount").innerText = totalMount;
+        console.log("totalcelstin: "+ amount);
+
+
+
+        // getting value from form
+        //-----------------------------------------------------------
+        let firstName = document.getElementById("firstname").value;
+        let lastName = document.getElementById("lastname").value;
+        let plateNumber = document.getElementById("PlateNo").value;
+        let mobileNumber = document.getElementById("mobileNumber").value;
+        let paymentAmount = document.getElementById("paymentAmount").value;
+        let email = document.getElementById("email").value;
+        let address = document.getElementById("address").value;
+
+
+
+        const paymentSession = {
+            firstName,
+            lastName,
+            plateNumber,
+            mobileNumber,
+            paymentAmount,
+            email,
+            address,
+
+            // Set session expiration time to 1 hour (in milliseconds)
+            // expirationTime: Date.now() + 60 * 60 * 1000
+            //expirationTime: Date.now() + 60 * 60 * 1000 // set session for one hour
+        }
+        sessionStorage.setItem("payment", JSON.stringify(paymentSession));
+        localStorage.setItem('dataPayment', JSON.stringify(paymentSession));
+        // create current date
+
+
+
+        let createDate = new Date();
+        // console.log( "data for now :"+createDate);
+        // transaction id
+        const transactionId = generateTransactionId();
+        // console.log("transaction Id: "+transactionId);
+
+        // generate Id
+        //----------------------------------
+
+        const generateStringId = generateId();
+        console.log("generate Id: " + generateStringId);
+
+        // generate payment number
+        const generatedPaymentNumber = generatePaymentNumber();
+        console.log(generatedPaymentNumber);
+
+
+        // getting value form form
+
+// Database value from the form
+        let firstNameD = document.getElementById("firstname").value;
+        let lastNameD = document.getElementById("lastname").value;
+        let plateNumberD = document.getElementById("PlateNo").value;
+        let mobileNumberD = document.getElementById("mobileNumber").value;
+        let paymentAmountD = document.getElementById("paymentAmount").value;
+        let emailD = document.getElementById("email").value;
+        let addressD = document.getElementById("address").value;
+
+
+        //getting checking cart data from local storage
+
+        const getCart = localStorage.getItem('dataStorage');
+        let dataCart = JSON.parse(getCart);
+
+        let VehicleUsageValue = dataCart.VehicleUsageValue;
+        let declaredValue = dataCart.declaredValue;
+        let durationValue = dataCart.durationValue;
+        let endDateDS = dataCart.endDateDS;
+        let expirationTime = dataCart.expirationTime;
+        let locationCover = dataCart.locationCover;
+        let numberOfOccupantsCovered = dataCart.numberOfOccupantsCovered;
+        let policyFee = dataCart.policyFee;
+        let startDateS = dataCart.startDateS;
+        let sumInsuredPerOccupants = dataCart.sumInsuredPerOccupants;
+        let taxablePre = dataCart.taxablePre;
+        let totalPremiumPaye = dataCart.totalPremiumPaye;
+        let vehicleBrandValue = dataCart.vehicleBrandValue;
+        let vehicleChassisNumberValue = dataCart.vehicleChassisNumberValue;
+        let vehicleManufacturedYear = dataCart.vehicleManufacturedYear;
+        let vehicleModelValue = dataCart.vehicleModelValue;
+        let vehiclePlateNoValue = dataCart.vehiclePlateNoValue;
+        let vehicleSeatCapacityValue = dataCart.vehicleSeatCapacityValue;
+        let vehicleTypeValue = dataCart.vehicleTypeValue;
+        let vital = dataCart.vital;
+        let theftD = dataCart.theftD;
+        let thirdPartyLiabilityD = dataCart.thirdPartyLiabilityD;
+        let thirdPartyPremiumBase = dataCart.thirdPartyPremiumBase;
+        let totalNetPremium = dataCart.thirdPartyPremiumBase;
+        let totalPremiumRwanda = dataCart.totalPremiumRwanda;
+        let tplD = dataCart.tplD;
+        let waiveOfExcess = dataCart.waiveOfExcess;
+        let fireD = dataCart.fireD;
+        let motorGuaranty = dataCart.motorGuaranty;
+        let occupantD = dataCart.occupantD;
+        let ownDamageD = dataCart.ownDamageD;
+        let taxablePremium = dataCart.taxablePremium;
+        let ExtensionCOMESA = dataCart.ExtensionCOMESA;
+
+
+
+
+        let statusTrans = "Completed";
+        try {
+            const response = await fetch("http://localhost:8080/registrationPayment", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        id: generateStringId,
+                        paymentNumber: generatedPaymentNumber,
+                        firstName: firstNameD,
+                        lastName: lastNameD,
+                        plateNumber: plateNumberD,
+                        mobileNumber: mobileNumberD,
+                        paymentAmount: paymentAmountD,
+                        email: emailD,
+                        address: addressD,
+                        transactionId: transactionId,
+                        transactionStatus: statusTrans,
+                        created_at: createDate,
+                        updated_at: createDate
+                    }
+                )
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data);
+        } catch (e) {
+            console.log(`An error occurred: ${e}`);
+        }
+
+        // Updating checking cart to transaction status field
+        try {
+            const response = await fetch("http://localhost:8080/saveCart", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+
+                        plateNumber: vehiclePlateNoValue,
+                        vehicleType: VehicleUsageValue,
+                        usageType: vehicleTypeValue,
+                        vehicleManufacturedYear: vehicleManufacturedYear,
+                        vehicleBrand: vehicleBrandValue,
+                        vehicleModel: vehicleModelValue,
+                        vehicleChassisNumber: vehicleChassisNumberValue,
+                        vehicleSeatCapacity: vehicleSeatCapacityValue,
+                        duration: durationValue,
+                        territory: locationCover,
+                        declaredValueSumInsured: declaredValue,
+                        numberOfOccupantCovered: numberOfOccupantsCovered,
+                        sumInsuredPerOccupant: sumInsuredPerOccupants,
+                        thirdParty: thirdPartyLiabilityD,
+                        ownDamage: ownDamageD,
+                        theft: theftD,
+                        fire: fireD,
+                        occupant: occupantD,
+                        tpl: tplD,
+                        startDate: startDateS,
+                        endingDate: endDateDS,
+                        premiumBase: thirdPartyPremiumBase,
+                        netPremiumOne: thirdPartyPremiumBase,
+                        waiveOfExcess: waiveOfExcess,
+                        totalPremiumRwanda: totalPremiumRwanda,
+                        extensionCOMESA: ExtensionCOMESA,
+                        netPremiumTwo: totalNetPremium,
+                        motorGuarantyFund: motorGuaranty,
+                        policyFees: policyFee,
+                        totalPremiumPayable: totalPremiumPaye,
+                        transactionStatus: "Completed",
+                        taxablepremium: taxablePremium,
+                        vatat18percent: vital
+                    }
+                )
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log(data);
+        } catch (e) {
+            console.log(`An error occurred: ${e}`);
+        }
+
+    }
+
+
+    function generateTransactionId() {
+        // Generate a random 8-digit number
+        const randomDigits = Math.floor(Math.random() * 100000000);
+
+        // Get the current timestamp
+        const timestamp = Date.now();
+
+        // Combine the random number and timestamp to create the transaction ID
+        const transactionId = `${randomDigits}-${timestamp}`;
+
+        return transactionId;
+    }
+
+    // generate Id
+    function generateId() {
+        const randomId = Math.floor(Math.random() * 100000000); // Generate a random 8-digit number
+        const id = `CID ${randomId}`;
+        return id;
+    }
+
+    // Generate payment Number
+    function generatePaymentNumber() {
+        const randomNum = Math.floor(Math.random() * 1000000000); // Generate a random 9-digit number
+        const paymentNumber = `PNO ${randomNum}`;
+        return paymentNumber;
+    }
+
+
+    // Call the function
+    //mainDatafunction();
+
+    // Add event listener for DOMContentLoaded
+
+    document.addEventListener("DOMContentLoaded", handleDOMContentLoaded);
+
+    //This event listener help us to bring data list  on the option field
+    document.addEventListener('DOMContentLoaded', mainDatafunction);
+
+    async function handleDOMContentLoaded() {
+        const form = document.getElementById('myForm');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+        });
+    }
+
+
+</script>
+
+</body>
+
+</html>
